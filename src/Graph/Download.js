@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { Divider, Icon } from 'antd';
 import { api } from "../api";
+import { formatNum } from "../utils";
 import BarChart from "./BarChart.js";
 import PieChart from "./PieChart.js";
 import ColumnDrilldown from "./ColumnDrilldown.js";
+import startCase from 'lodash/startCase';
 
 export default class DownloadTotal extends Component {
     state = { data: undefined };
@@ -12,7 +15,18 @@ export default class DownloadTotal extends Component {
 
     async updateData() {
         const data = await api.downloads();
+        let totalPieChartData = [];
+        if (data && data.total_downloads) {
+            totalPieChartData = Object.keys(data.total_downloads).map(key => {
+                if (key != "total") {
+                    return {
+                        name: startCase(key),
+                        y: data.total_downloads[key],
+                    }
+                }
 
+            });
+        }
         const jdk8Data = await api.downloads("8/jdk8u222-b10");
         let pieChartData = [];
         if (jdk8Data) {
@@ -23,21 +37,27 @@ export default class DownloadTotal extends Component {
                 }
             });
         }
-        console.log(jdk8Data);
-        console.log(pieChartData);
-        this.setState({ data, pieChartData });
+        this.setState({ data, totalPieChartData, pieChartData });
 
     }
 
     render() {
-        if (!this.state.data) return null;
+        const { data, totalPieChartData, pieChartData } = this.state;
+        if (!data) return null;
+        const total = formatNum(data.total_downloads.total);
         return <>
-            <BarChart data={this.state.data.docker_pulls} name="Docker Pulls" />
-            <div style={{display:"flex"}}>
-            <BarChart data={this.state.data.total_downloads} name="Total Downloads" startCaseKeys/>
-            <PieChart data={this.state.pieChartData} name="jdk8u222-b10 Downloads" />
+            <div style={{ textAlign: "center" }}>
+                <div ><p style={{ fontSize: 20, color: "rgb(107,164,231)" }}>AdoptOpenJDK Download Stats</p></div>
+                <div ><Icon type="cloud-download" style={{ fontSize: 20, color: "rgb(48,135,255)" }} /><h2 >{total}</h2><p >Total Downloads/Docker pulls Ever</p></div>
             </div>
-            <ColumnDrilldown data={this.state.data.github_downloads} name="Github Downloads"/>
+            <Divider />
+            <div style={{ display: "flex" }}>
+                <BarChart data={data.total_downloads} name="Total Downloads" startCaseKeys />
+                <PieChart data={totalPieChartData} name="Total Downloads" showInLegend={true} dataLabels={true} colors={['rgb(108,109,227)', 'rgb(254,174,98)']} />
+                {/* <PieChart data={pieChartData} name="jdk8u222-b10 Downloads" /> */}
+            </div>
+            <ColumnDrilldown data={data.github_downloads} name="Github Downloads" />
+            <BarChart data={data.docker_pulls} name="Docker Pulls" />
         </>
     }
 }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Highcharts from 'highcharts'
-import HighchartsReact from 'highcharts-react-official'
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
 import startCase from 'lodash/startCase';
+import './Graph.css';
 
 export default class BarChart extends Component {
     render() {
@@ -13,6 +14,10 @@ export default class BarChart extends Component {
             },
             title: {
                 text: name
+            },
+            subtitle: {
+                text: 'Data is from: <a href="https://api.adoptopenjdk.net/v3/stats/downloads/total" target="_blank" rel="noopener noreferrer">api.adoptopenjdk.net/v3/stats/downloads/total</a>',
+                useHTML: true,
             },
             xAxis: {
                 categories: Object.keys(data).map(v => startCaseKeys ? startCase(v) : v),
@@ -31,6 +36,10 @@ export default class BarChart extends Component {
             },
             plotOptions: {
                 column: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}'
+                    },
                     pointPadding: 0.2,
                     borderWidth: 0,
                     minPointLength: 10,
@@ -43,7 +52,7 @@ export default class BarChart extends Component {
             }]
         }
 
-        return <div style={{boxShadow: "0px 2px 4px rgba(0,0,0,0.06)", marginBottom: 40}}>
+        return <div className="chart">
             <HighchartsReact
                 highcharts={Highcharts}
                 options={options}

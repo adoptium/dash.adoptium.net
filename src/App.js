@@ -45,12 +45,11 @@ export default class extends Component {
 							mode="inline"
 							defaultSelectedKeys={['1']}
 							defaultOpenKeys={['sub1']}
-							style={{ height: '100%', borderRight: 0 }}
+							style={{ height: '100%', borderRight: 0, marginTop: 20 }}
 						>
-							<SubMenu key="sub1" title={<span><Icon type="user" />Menu</span>}>
-								<Menu.Item key="1"><Link to="/download">Download</Link></Menu.Item>
-								<Menu.Item key="2"><Link to="/trends">Trends</Link></Menu.Item>
-							</SubMenu>
+							<Menu.Item key="1"><Link to="/download"><Icon type="cloud-download" />Download</Link></Menu.Item>
+							<Menu.Item key="2"><Link to="/trends"><Icon type="line-chart" />Trends</Link></Menu.Item>
+
 						</Menu>
 					</Sider>
 					<Layout style={{ padding: '0 24px 24px' }}>

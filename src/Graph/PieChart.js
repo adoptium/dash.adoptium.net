@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import Highcharts from 'highcharts'
-import HighchartsReact from 'highcharts-react-official'
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
+import './Graph.css';
 
 export default class PieChart extends Component {
     render() {
-        const { data, name } = this.props;
+        const { data, name, showInLegend = false, dataLabels = false, colors = undefined } = this.props;
         if (!data) return null;
 
         const options = {
@@ -17,10 +18,13 @@ export default class PieChart extends Component {
             title: {
                 text: name
             },
+            subtitle: {
+                text: 'Data is from: <a href="https://api.adoptopenjdk.net/v3/stats/downloads/total" target="_blank" rel="noopener noreferrer">api.adoptopenjdk.net/v3/stats/downloads/total</a>',
+                useHTML: true,
+            },
             tooltip: {
                 formatter: function () {
-                    return '<b>' + this.point.percentage.toFixed(2) + '% </b><br/>' +
-                        this.y + ' downloads';
+                    return this.point.name + '<b> ' + this.point.percentage.toFixed(2) + '% </b><br/><b> ' + this.y + '</b> downloads';
                 }
             },
             plotOptions: {
@@ -28,19 +32,21 @@ export default class PieChart extends Component {
                     allowPointSelect: true,
                     cursor: 'pointer',
                     dataLabels: {
-                        enabled: false,
+                        enabled: dataLabels,
+                        format: '<b>{point.name}</b>: {point.percentage:.2f} %'
                     },
-                    //showInLegend: true
+                    colors,
+                    shadow: true,
+                    showInLegend
                 }
             },
             series: [{
-                name: name,
+                name,
                 colorByPoint: true,
                 data
             }]
         }
-
-        return <div style={{ boxShadow: "0px 2px 4px rgba(0,0,0,0.06)", marginBottom: 40 }}>
+        return <div className="chart">
             <HighchartsReact
                 highcharts={Highcharts}
                 options={options}
