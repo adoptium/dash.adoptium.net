@@ -1,0 +1,28 @@
+.filters-box {
+    contain: content;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.filters {
+    contain: content;
+    padding: 10px 20px;
+}
+
+.column {
+    float: left;
+    padding: 0px 10px;
+}
+
+.column label {
+    display: block;
+}
+
+p {
+    padding-top: 20px;
+    padding-left: 50px;
+}
+
+.days {
+    width: 120px;
+}

@@ -45,6 +45,7 @@ export default class DownloadTotal extends Component {
         const { data, totalPieChartData, pieChartData } = this.state;
         if (!data) return null;
         const total = formatNum(data.total_downloads.total);
+
         return <>
             <div style={{ textAlign: "center" }}>
                 <div ><p style={{ fontSize: 20, color: "rgb(107,164,231)" }}>AdoptOpenJDK Download Stats</p></div>
