@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { api } from "../api";
+import { get } from "../utils";
 import LineChart from "./LineChart";
 import BarChart from "./BarChart";
 import moment from 'moment';
@@ -33,13 +34,15 @@ export default class Trends extends Component {
             source: undefined,
             feature_version: undefined,
             jvm_impl: undefined
-        }
+        },
+        versions: undefined
     };
 
     async componentDidMount() {
         await this.updateData(1, this.state.args);
         await this.updateData(2, this.state.args2);
         await this.updateMonthlyData(this.state.monthlyArgs);
+        this.setState({versions: (await get(`https://api.adoptopenjdk.net/v3/info/available_releases`)).available_releases})
     }
 
     async updateData(seriesID, args) {
@@ -110,7 +113,7 @@ export default class Trends extends Component {
                     defaultValue={args.source}
                     onChange={e => {args.source = e.target.value; updateFunc()}}
                     options={[
-                        { label: 'None', value: undefined },
+                        { label: 'All', value: undefined },
                         { label: 'Github', value: 'github' },
                         { label: 'Docker', value: 'dockerhub' }
                     ]}
@@ -121,16 +124,7 @@ export default class Trends extends Component {
                 <Radio.Group name={"feature_version"}
                     defaultValue={args.feature_version}
                     onChange={e => {args.feature_version = e.target.value; updateFunc()}}
-                    options={[
-                        { label: 'None', value: undefined },
-                        { label: 'JDK 8', value: 8 },
-                        { label: 'JDK 9', value: 9 },
-                        { label: 'JDK 10', value: 10 },
-                        { label: 'JDK 11', value: 11 },
-                        { label: 'JDK 12', value: 12 },
-                        { label: 'JDK 13', value: 13 },
-                        { label: 'JDK 14', value: 14 },
-                    ]}
+                    options={this.generateVersions()}
                 />
             </div>
             <div className="column">
@@ -139,7 +133,7 @@ export default class Trends extends Component {
                     defaultValue={args.jvm_impl}
                     onChange={e => {args.jvm_impl = e.target.value; updateFunc()}}
                     options={[
-                        { label: 'None', value: undefined },
+                        { label: 'All', value: undefined },
                         { label: 'HotSpot', value: 'hotspot' },
                         { label: 'OpenJ9', value: 'openj9' }
                     ]}
@@ -186,6 +180,19 @@ export default class Trends extends Component {
             </div>
             {this.renderFilters(args, updateFunc)}
         </div>
+    }
+
+    generateVersions() {
+        var versionOpts = [{label: 'All', value: undefined}]
+        var versions = this.state.versions
+
+        if (versions) {
+            for(var version of versions) {
+                versionOpts.push({label: 'JDK ' + version, value: version})
+            }
+        }
+
+        return versionOpts
     }
 
     createSeries(series, series2) {
@@ -237,7 +244,7 @@ export default class Trends extends Component {
                 <div className="column days">
                     <div>Days</div>
                     <Slider 
-                        defaultValue={state.days} 
+                        defaultValue={state.days}
                         max={180}
                         onAfterChange={value => {state.days = value; this.updateData(1, this.state.args); this.updateData(2, this.state.args2)}}
                     />
