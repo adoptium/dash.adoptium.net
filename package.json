@@ -18,7 +18,7 @@
 		"highcharts": "^8.1.2",
 		"highcharts-react-official": "^2.2.2",
 		"http-proxy-middleware": "^0.19.2",
-		"lodash": "^4.17.15",
+		"lodash": "^4.17.19",
 		"moment": "^2.26.0",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
