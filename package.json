@@ -5,7 +5,7 @@
 	"license": "Apache License Version 2.0",
 	"scripts": {
 		"start": "node server.js",
-		"build": "parcel build index.html && cp CNAME 404.html dist/"
+		"build": "parcel build index.html"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.10.2",
