@@ -7,7 +7,7 @@ import ErrorBoundary from './ErrorBoundary';
 import { Download, Trends } from './Graph/';
 
 import 'antd/dist/antd.css';
-import AdoptLogo from './Adoptlogo.svg';
+import AdoptiumLogo from './Adoptiumlogo.svg';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -26,15 +26,15 @@ export default class extends Component {
 	render() {
 		return <ConfigProvider locale={enUS}>
 			<Layout>
-				<Header className="header" style={{ background: '#152935' }}>
+				<Header className="header" style={{ background: '#14003c' }}>
 					<div className="logo" />
 					<Menu
 						theme="dark"
 						mode="horizontal"
 						defaultSelectedKeys={['2']}
-						style={{ lineHeight: '64px', background: '#152935' }}
+						style={{ lineHeight: '64px', background: '#14003c' }}
 					>
-						<Menu.Item key="1"><a href="https://adoptopenjdk.net/" style={{ height: '100%', display: 'flex' }}><img src={AdoptLogo} /></a></Menu.Item>
+						<Menu.Item key="1"><a href="https://adoptium.net/" style={{ height: '100%', display: 'flex' }}><img src={AdoptiumLogo} style={{height: '3.5em', paddingTop: '1em'}} /></a></Menu.Item>
 						<Menu.Item key="2"><Link to="/download">Download Stats</Link></Menu.Item>
 					</Menu>
 
