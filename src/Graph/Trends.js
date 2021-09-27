@@ -42,7 +42,7 @@ export default class Trends extends Component {
         await this.updateData(1, this.state.args);
         await this.updateData(2, this.state.args2);
         await this.updateMonthlyData(this.state.monthlyArgs);
-        this.setState({versions: (await get(`https://api.adoptopenjdk.net/v3/info/available_releases`)).available_releases})
+        this.setState({versions: (await get(`https://api.adoptium.net/v3/info/available_releases`)).available_releases})
     }
 
     async updateData(seriesID, args) {

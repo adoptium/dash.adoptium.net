@@ -48,7 +48,7 @@ export default class DownloadTotal extends Component {
 
         return <>
             <div style={{ textAlign: "center" }}>
-                <div ><p style={{ fontSize: 20, color: "rgb(107,164,231)" }}>AdoptOpenJDK Download Stats</p></div>
+                <div ><p style={{ fontSize: 20, color: "rgb(107,164,231)" }}>Adoptium Download Stats</p></div>
                 <div ><Icon type="cloud-download" style={{ fontSize: 20, color: "rgb(48,135,255)" }} /><h2 >{total}</h2><p >Total Downloads/Docker pulls Ever</p></div>
             </div>
             <Divider />

@@ -19,7 +19,7 @@ export default class PieChart extends Component {
                 text: name
             },
             subtitle: {
-                text: 'Data is from: <a href="https://api.adoptopenjdk.net/v3/stats/downloads/total" target="_blank" rel="noopener noreferrer">api.adoptopenjdk.net/v3/stats/downloads/total</a>',
+                text: 'Data is from: <a href="https://api.adoptium.net/v3/stats/downloads/total" target="_blank" rel="noopener noreferrer">api.adoptium.net/v3/stats/downloads/total</a>',
                 useHTML: true,
             },
             tooltip: {

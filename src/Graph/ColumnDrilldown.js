@@ -79,7 +79,7 @@ export default class ColumnDrilldown extends Component {
                 text: name
             },
             subtitle: {
-                text: 'Click the columns to view the version specific data. Data is from: <a href="https://api.adoptopenjdk.net/" target="_blank" rel="noopener noreferrer">api.adoptopenjdk.net</a>',
+                text: 'Click the columns to view the version specific data. Data is from: <a href="https://api.adoptium.net/" target="_blank" rel="noopener noreferrer">api.adoptium.net</a>',
                 useHTML: true,
             },
             xAxis: {
