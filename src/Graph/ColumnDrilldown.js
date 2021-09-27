@@ -29,35 +29,37 @@ export default class ColumnDrilldown extends Component {
             const secondLevelDrilldownSeries = [];
             const seriesData = await Promise.all(Object.keys(data).map(async key => {
                 const apiData = await api.downloads(key);
-                const drilldownSeriesData = await Promise.all(Object.keys(apiData).map(async apiDataKey => {
-                    //second level drilldown
-                    const secondLevelApiData = await api.downloads(`${key}/${apiDataKey}`);
-                    const secondLevelDrilldownSeriesData = Object.keys(secondLevelApiData).map(secondLevelApiKey => {
-                        return [secondLevelApiKey, secondLevelApiData[secondLevelApiKey]];
-                    });
-                    secondLevelDrilldownSeries.push({
-                        name: apiDataKey,
-                        id: apiDataKey,
-                        data: secondLevelDrilldownSeriesData
+                if (apiData) {
+                    const drilldownSeriesData = await Promise.all(Object.keys(apiData).map(async apiDataKey => {
+                        //second level drilldown
+                        const secondLevelApiData = await api.downloads(`${key}/${apiDataKey}`);
+                        const secondLevelDrilldownSeriesData = Object.keys(secondLevelApiData).map(secondLevelApiKey => {
+                            return [secondLevelApiKey, secondLevelApiData[secondLevelApiKey]];
+                        });
+                        secondLevelDrilldownSeries.push({
+                            name: apiDataKey,
+                            id: apiDataKey,
+                            data: secondLevelDrilldownSeriesData
 
+                        });
+                        return {
+                            name: apiDataKey,
+                            y: apiData[apiDataKey],
+                            drilldown: apiDataKey
+                        }
+                    }));
+
+                    drilldownSeries.push({
+                        name: `JDK${key}`,
+                        id: key,
+                        data: drilldownSeriesData,
                     });
+
                     return {
-                        name: apiDataKey,
-                        y: apiData[apiDataKey],
-                        drilldown: apiDataKey
+                        name: `JDK${key}`,
+                        y: data[key],
+                        drilldown: key
                     }
-                }));
-
-                drilldownSeries.push({
-                    name: `JDK${key}`,
-                    id: key,
-                    data: drilldownSeriesData,
-                });
-
-                return {
-                    name: `JDK${key}`,
-                    y: data[key],
-                    drilldown: key
                 }
             }));
             drilldownSeries.push(...secondLevelDrilldownSeries);

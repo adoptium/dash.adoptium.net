@@ -3,7 +3,11 @@ export const get = async (url, params) => {
         method: 'get'
     });
 
-    return response.json();
+   if (response.status == 200) {
+       return response.json();
+   } else {
+       return {}
+   }
 };
 
 export const stringify = (obj = {}) => {
