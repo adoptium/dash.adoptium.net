@@ -1,29 +1,29 @@
 {
-  "name": "react-starter",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "Apache License Version 2.0",
-  "scripts": {
-    "start": "node server.js",
-    "build": "parcel build index.html && cp CNAME 404.html dist/"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.10.2",
-    "@babel/plugin-proposal-class-properties": "^7.10.1",
-    "parcel-bundler": "^1.12.4"
-  },
-  "dependencies": {
-    "antd": "^3.26.18",
-    "express": "^4.17.1",
-    "highcharts": "^9.0.0",
-    "highcharts-react-official": "^2.2.2",
-    "http-proxy-middleware": "^0.19.2",
-    "lodash": "^4.17.21",
-    "moment": "^2.26.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0",
-    "static-server": "^2.2.1"
-  }
+"name": "react-starter",
+"version": "1.0.0",
+"main": "index.js",
+"license": "Apache License Version 2.0",
+"scripts": {
+"start": "node server.js",
+"build": "parcel build index.html"
+},
+"devDependencies": {
+"@babel/core": "^7.10.2",
+"@babel/plugin-proposal-class-properties": "^7.10.1",
+"parcel-bundler": "^1.12.4"
+},
+"dependencies": {
+"antd": "^3.26.18",
+"express": "^4.17.1",
+"highcharts": "^9.0.0",
+"highcharts-react-official": "^2.2.2",
+"http-proxy-middleware": "^0.19.2",
+"lodash": "^4.17.21",
+"moment": "^2.26.0",
+"react": "^16.13.1",
+"react-dom": "^16.13.1",
+"react-router": "^5.2.0",
+"react-router-dom": "^5.2.0",
+"static-server": "^2.2.1"
+}
 }
