@@ -127,18 +127,6 @@ export default class Trends extends Component {
                     options={this.generateVersions()}
                 />
             </div>
-            <div className="column">
-                <div>JVM Impl*</div>
-                <Radio.Group name={"jvm_impl"}
-                    defaultValue={args.jvm_impl}
-                    onChange={e => {args.jvm_impl = e.target.value; updateFunc()}}
-                    options={[
-                        { label: 'All', value: undefined },
-                        { label: 'HotSpot', value: 'hotspot' },
-                        { label: 'OpenJ9', value: 'openj9' }
-                    ]}
-                />
-            </div>
         </>
     }
 
