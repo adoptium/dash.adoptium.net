@@ -16,7 +16,7 @@
 "antd": "^3.26.18",
 "express": "^4.17.1",
 "highcharts": "^9.3.0",
-"highcharts-react-official": "^2.2.2",
+"highcharts-react-official": "^3.1.0",
 "http-proxy-middleware": "^0.19.2",
 "lodash": "^4.17.21",
 "moment": "^2.29.1",
