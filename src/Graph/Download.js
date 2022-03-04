@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Divider, Icon } from 'antd';
+import { CloudDownloadOutlined } from '@ant-design/icons';
+import { Divider } from 'antd';
 import { api } from "../api";
 import { formatNum } from "../utils";
 import BarChart from "./BarChart.js";
@@ -49,7 +50,7 @@ export default class DownloadTotal extends Component {
         return <>
             <div style={{ textAlign: "center" }}>
                 <div ><p style={{ fontSize: 20, color: "rgb(107,164,231)" }}>Adoptium Download Stats</p></div>
-                <div ><Icon type="cloud-download" style={{ fontSize: 20, color: "rgb(48,135,255)" }} /><h2 >{total}</h2><p >Total Downloads/Docker pulls Ever</p></div>
+                <div ><CloudDownloadOutlined style={{ fontSize: 20, color: "rgb(48,135,255)" }} /><h2 >{total}</h2><p >Total Downloads/Docker pulls Ever</p></div>
             </div>
             <Divider />
             <div style={{ display: "flex" }}>
@@ -59,6 +60,6 @@ export default class DownloadTotal extends Component {
             </div>
             <ColumnDrilldown data={data.github_downloads} name="Github Downloads" />
             <BarChart data={data.docker_pulls} name="Docker Pulls" />
-        </>
+        </>;
     }
 }
