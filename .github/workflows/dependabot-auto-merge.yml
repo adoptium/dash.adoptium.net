@@ -1,0 +1,6 @@
+name: Dependabot auto-merge
+on: pull_request
+
+jobs:
+  dependabot:
+    uses: adoptium/.github/.github/workflows/dependabot-auto-merge.yml@main
