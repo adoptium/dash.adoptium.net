@@ -35,7 +35,6 @@ export default class extends Component {
 						style={{ lineHeight: '64px', background: '#14003c' }}
 					>
 						<Menu.Item key="1"><a href="https://adoptium.net/" style={{ height: '100%', display: 'flex' }}><img src={AdoptiumLogo} style={{height: '3.5em', paddingTop: '1em'}} /></a></Menu.Item>
-						<Menu.Item key="2"><Link to="/download">Download Stats</Link></Menu.Item>
 					</Menu>
 
 				</Header>
@@ -67,6 +66,11 @@ export default class extends Component {
 						</ErrorBoundary>
 					</Layout>
 				</Layout>
+				<Layout>
+  				    <footer className="footer" style={{ background: '#14003c', margin: '20px 0'}}>
+					    <a href="https://www.netlify.com" style={{ height: '100%', display: 'flex' }}><img src="https://www.netlify.com/v3/img/components/netlify-light.svg" alt="Deploys by Netlify"  /></a>
+					</footer>
+                </Layout>
 			</Layout>
 		</ConfigProvider>
 	}
