@@ -67,10 +67,10 @@ export default class extends Component {
 					</Layout>
 				</Layout>
 				<Layout>
-  				    <footer className="footer" style={{ background: '#14003c', margin: '20px 0'}}>
-					    <a href="https://www.netlify.com" style={{ height: '100%', display: 'flex' }}><img src="https://www.netlify.com/v3/img/components/netlify-light.svg" alt="Deploys by Netlify"  /></a>
+					<footer className="py-3 mt-auto" style={{ background: '#14003c', margin: '20px 0'}}>
+						<a href="https://www.netlify.com" style={{ height: '100%', display: 'flex' }}><img src="https://www.netlify.com/v3/img/components/netlify-light.svg" alt="Deploys by Netlify" /></a>
 					</footer>
-                </Layout>
+				 </Layout>
 			</Layout>
 		</ConfigProvider>
 	}
