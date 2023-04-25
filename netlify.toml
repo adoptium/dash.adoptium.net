@@ -4,3 +4,11 @@ command = "npm run build"
 
 [build.environment]
 NODE_VERSION = "12.18.3"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = '''
+    max-age=63072000;
+    includeSubDomains;
+    preload'''
