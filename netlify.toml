@@ -12,3 +12,4 @@ NODE_VERSION = "12.18.3"
     max-age=63072000;
     includeSubDomains;
     preload'''
+    X-Content-Type-Options =  "nosniff"
