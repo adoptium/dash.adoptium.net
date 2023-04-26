@@ -19,7 +19,7 @@
 package = "netlify-plugin-csp-generator"
 
   [plugins.inputs]
-  buildDir = "public"
+  buildDir = "dist"
 
   [plugins.inputs.policies]
     defaultSrc = "'self'"
