@@ -1,9 +1,9 @@
 [build]
-publish = "dist"
-command = "npm run build"
+  publish = "dist"
+  command = "npm run build"
 
 [build.environment]
-NODE_VERSION = "12.18.3"
+  NODE_VERSION = "12.18.3"
 
 [[headers]]
   for = "/*"
@@ -14,3 +14,12 @@ NODE_VERSION = "12.18.3"
     preload'''
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "DENY"
+
+[[plugins]]
+package = "netlify-plugin-csp-generator"
+
+  [plugins.inputs]
+  buildDir = "public"
+
+  [plugins.inputs.policies]
+    defaultSrc = "'self'"
