@@ -22,7 +22,7 @@
 "moment": "^2.29.4",
 "react": "^16.14.0",
 "react-dom": "^16.14.0",
-"react-router": "^5.2.0",
+"react-router": "^6.11.0",
 "react-router-dom": "^5.2.0",
 "static-server": "^2.2.1"
 }
