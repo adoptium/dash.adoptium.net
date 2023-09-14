@@ -8,6 +8,7 @@ export default class BarChart extends Component {
     render() {
         const { data, name, startCaseKeys } = this.props;
         if (!data) return null;
+
         const options = {
             chart: {
                 type: 'column'
@@ -38,7 +39,10 @@ export default class BarChart extends Component {
                 column: {
                     dataLabels: {
                         enabled: true,
-                        format: '{point.y}'
+                        formatter: function () {
+                            if (!this || !this.y) return '';
+                            return Highcharts.numberFormat(this.y, 0, '.', ' ');
+                        }
                     },
                     pointPadding: 0.2,
                     borderWidth: 0,

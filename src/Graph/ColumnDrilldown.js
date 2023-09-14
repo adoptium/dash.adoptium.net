@@ -96,7 +96,10 @@ export default class ColumnDrilldown extends Component {
                 column: {
                     dataLabels: {
                         enabled: true,
-                        format: '{point.y}'
+                        formatter: function () {
+                            if (!this || !this.y) return '';
+                            return Highcharts.numberFormat(this.y, 0, '.', ' ');
+                        },
                     },
                     pointPadding: 0.2,
                     borderWidth: 0,
