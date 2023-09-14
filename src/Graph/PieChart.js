@@ -24,7 +24,8 @@ export default class PieChart extends Component {
             },
             tooltip: {
                 formatter: function () {
-                    return this.point.name + '<b> ' + this.point.percentage.toFixed(2) + '% </b><br/><b> ' + this.y + '</b> downloads';
+                    let nbDownloads = Highcharts.numberFormat(this.y, 0, '.', ' ');
+                    return this.point.name + '<b> ' + this.point.percentage.toFixed(2) + '% </b><br/><b> ' + nbDownloads + '</b> downloads';
                 }
             },
             plotOptions: {
