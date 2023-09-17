@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
-import { Link } from 'react-router-dom';
 import { ConfigProvider, Layout, Menu, Icon } from 'antd';
 import enUS from 'antd/lib/locale-provider/en_US';
 import ErrorBoundary from './ErrorBoundary';
 import { Download, Trends } from './Graph/';
-
 import 'antd/dist/antd.css';
 import AdoptiumLogo from './Adoptiumlogo.svg';
+import NavigationMenu from './Components/NavigationMenu';
 
-const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 export default class extends Component {
@@ -40,16 +38,7 @@ export default class extends Component {
 				</Header>
 				<Layout>
 					<Sider width={200} style={{ background: '#fff' }} trigger={null} collapsible collapsed={this.state.collapsed}>
-						<Menu
-							mode="inline"
-							defaultSelectedKeys={['1']}
-							defaultOpenKeys={['sub1']}
-							style={{ height: '100%', borderRight: 0, marginTop: 20 }}
-						>
-							<Menu.Item key="1"><Link to="/download"><Icon type="cloud-download" />Download</Link></Menu.Item>
-							<Menu.Item key="2"><Link to="/trends"><Icon type="line-chart" />Trends</Link></Menu.Item>
-
-						</Menu>
+						<NavigationMenu />
 					</Sider>
 					<Layout style={{ padding: '0 24px 24px' }}>
 						<ErrorBoundary>
