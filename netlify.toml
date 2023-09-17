@@ -16,6 +16,16 @@ NODE_VERSION = "12.18.3"
     X-Frame-Options = "DENY"
 
 [[redirects]]
-  from = "/*"
+  from = "/download"
   to = "/index.html"
   status = 200
+
+[[redirects]]
+  from = "/trends"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 301
