@@ -1,2 +1,2 @@
-export { default as Download } from "./Download";
-export { default as Trends } from "./Trends";
+export { default as Download } from './Download'
+export { default as Trends } from './Trends'

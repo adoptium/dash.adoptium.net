@@ -1,248 +1,261 @@
-import React, { Component } from 'react';
-import { api } from "../api";
-import { get } from "../utils";
-import LineChart from "./LineChart";
-import BarChart from "./BarChart";
-import moment from 'moment';
-import { Radio, Slider, Checkbox } from 'antd';
-import './Trends.css';
+import React, { Component } from 'react'
+import { api } from '../api'
+import { get } from '../utils'
+import LineChart from './LineChart'
+import BarChart from './BarChart'
+import moment from 'moment'
+import { Radio, Slider, Checkbox } from 'antd'
+import './Trends.css'
 
 export default class Trends extends Component {
-    state = { 
-        series: undefined,
-        series2: undefined,
-        monthlyData: undefined,
-        categories: undefined,
-        categories2: undefined,
-        args: {
-            visible: true,
-            type: 'daily',
-            source: undefined,
-            feature_version: undefined,
-            jvm_impl: undefined
-        },
-        args2: {
-            visible: false,
-            type: 'daily',
-            source: undefined,
-            feature_version: undefined,
-            jvm_impl: undefined
-        },
-        days: 30,
-        monthlyArgs: {
-            type: 'monthly',
-            source: undefined,
-            feature_version: undefined,
-            jvm_impl: undefined
-        },
-        versions: undefined
-    };
+  state = {
+    series: undefined,
+    series2: undefined,
+    monthlyData: undefined,
+    categories: undefined,
+    categories2: undefined,
+    args: {
+      visible: true,
+      type: 'daily',
+      source: undefined,
+      feature_version: undefined,
+      jvm_impl: undefined
+    },
+    args2: {
+      visible: false,
+      type: 'daily',
+      source: undefined,
+      feature_version: undefined,
+      jvm_impl: undefined
+    },
+    days: 30,
+    monthlyArgs: {
+      type: 'monthly',
+      source: undefined,
+      feature_version: undefined,
+      jvm_impl: undefined
+    },
+    versions: undefined
+  }
 
-    async componentDidMount() {
-        await this.updateData(1, this.state.args);
-        await this.updateData(2, this.state.args2);
-        await this.updateMonthlyData(this.state.monthlyArgs);
-        this.setState({versions: (await get(`https://api.adoptium.net/v3/info/available_releases`)).available_releases})
+  async componentDidMount () {
+    await this.updateData(1, this.state.args)
+    await this.updateData(2, this.state.args2)
+    await this.updateMonthlyData(this.state.monthlyArgs)
+    this.setState({ versions: (await get('https://api.adoptium.net/v3/info/available_releases')).available_releases })
+  }
+
+  async updateData (seriesID, args) {
+    const data = await api.tracking(this.generateParams(args))
+
+    switch (seriesID) {
+      case 1: this.setState({ series: this.processData(seriesID, data, args.type, args.visible) }); break
+      case 2: this.setState({ series2: this.processData(seriesID, data, args.type, args.visible) }); break
     }
 
-    async updateData(seriesID, args) {
-        const data = await api.tracking(this.generateParams(args))
+    if (data.length > 0) {
+      const categories = data.map(({ date }) => moment(date).format('DD-MM-YYYY'))
 
-        switch(seriesID) {   
-            case 1: this.setState({series: this.processData(seriesID, data, args.type, args.visible)}); break;
-            case 2: this.setState({series2: this.processData(seriesID, data, args.type, args.visible)}); break;
-        }
+      switch (seriesID) {
+        case 1: this.setState({ categories }); break
+        case 2: this.setState({ categories2: categories }); break
+      }
+    }
+  }
 
-        if (data.length > 0) {
-            const categories = data.map(({ date }) => moment(date).format('DD-MM-YYYY'));
-
-            switch(seriesID) {   
-                case 1: this.setState({categories: categories}); break;
-                case 2: this.setState({categories2: categories}); break;
-            }
-        }
+  processData (seriesID, data, type, visible) {
+    let typeData
+    switch (type) {
+      case 'daily': typeData = data.map(({ daily }) => daily); break
+      case 'total': typeData = data.map(({ total }) => total); break
     }
 
-    processData(seriesID, data, type, visible) {
-        var typeData;
-        switch(type) {
-            case 'daily': typeData = data.map(({ daily }) => daily); break;
-            case 'total': typeData = data.map(({ total }) => total); break;
-        }
-
-        const series = {
-            name: "Series " + seriesID,
-            data: typeData,
-            visible: (data.length != 0) && visible
-        };
-
-        return series;
+    const series = {
+      name: 'Series ' + seriesID,
+      data: typeData,
+      visible: (data.length !== 0) && visible
     }
 
-    async updateMonthlyData(args) {
-        const data = await api.monthly(this.generateParams(args))
+    return series
+  }
 
-        var monthlyData = {}
-        data.forEach(data => monthlyData[this.parseMonth(data.month)] = data[args.type])
+  async updateMonthlyData (args) {
+    const data = await api.monthly(this.generateParams(args))
 
-        this.setState({monthlyData})
-    }
+    const monthlyData = {}
+    data.forEach(data => {
+      monthlyData[this.parseMonth(data.month)] = data[args.type]
+    })
 
-    generateParams(args) {
-        let params = {}
-        if(args.source) params.source = args.source
-        if(args.feature_version) params.feature_version = args.feature_version
-        if(args.jvm_impl) params.jvm_impl = args.jvm_impl
-        params.days = this.state.days
+    this.setState({ monthlyData })
+  }
 
-        return params;
-    }
+  generateParams (args) {
+    const params = {}
+    if (args.source) params.source = args.source
+    if (args.feature_version) params.feature_version = args.feature_version
+    if (args.jvm_impl) params.jvm_impl = args.jvm_impl
+    params.days = this.state.days
 
-    parseMonth(month) {
-        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    return params
+  }
 
-        var b = month.split("-")
-        return monthNames[b[1] - 1] + " " + b[0]
-    }
+  parseMonth (month) {
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-    renderFilters(args, updateFunc) {
-        return <> 
-            <div className="column">
-                <div>Source</div>
-                <Radio.Group name={"source"}
-                    defaultValue={args.source}
-                    onChange={e => {args.source = e.target.value; updateFunc()}}
-                    options={[
-                        { label: 'All', value: undefined },
-                        { label: 'Github', value: 'github' },
-                        { label: 'Docker', value: 'dockerhub' }
-                    ]}
-                />
-            </div>
-            <div className="column">
-                <div>Feature Version*</div>
-                <Radio.Group name={"feature_version"}
-                    defaultValue={args.feature_version}
-                    onChange={e => {args.feature_version = e.target.value; updateFunc()}}
-                    options={this.generateVersions()}
-                />
-            </div>
-        </>
-    }
+    const b = month.split('-')
+    return monthNames[b[1] - 1] + ' ' + b[0]
+  }
 
-    renderTrackingFilters(args, updateFunc) {
-        return <div className="filters">
-            <div className="column">
-                <div>Visible</div>
-                <Checkbox defaultChecked={args.visible}
-                    onChange={e => {args.visible = e.target.checked; updateFunc()}}
-                />
-            </div>
-            <div className="column">
-                <div>Type</div>
-                <Radio.Group name={"type"}
-                    defaultValue={args.type}
-                    onChange={e => {args.type = e.target.value; updateFunc()}}
-                    options={[
-                        { label: 'Daily', value: 'daily' },
-                        { label: 'Total', value: 'total' }
-                    ]}
-                />
-            </div>
-            {this.renderFilters(args, updateFunc)}
+  renderFilters (args, updateFunc) {
+    return (
+      <>
+        <div className='column'>
+          <div>Source</div>
+          <Radio.Group
+            name='source'
+            defaultValue={args.source}
+            onChange={e => { args.source = e.target.value; updateFunc() }}
+            options={[
+              { label: 'All', value: undefined },
+              { label: 'Github', value: 'github' },
+              { label: 'Docker', value: 'dockerhub' }
+            ]}
+          />
         </div>
-    }
-
-    renderMonthlyFilters(args, updateFunc) {
-        return <div className="filters">
-             <div className="column">
-                <div>Type</div>
-                <Radio.Group name={"type"}
-                    defaultValue={args.type}
-                    onChange={e => {args.type = e.target.value; updateFunc()}}
-                    options={[
-                        { label: 'Monthly', value: 'monthly' },
-                        { label: 'Total', value: 'total' }
-                    ]}
-                />
-            </div>
-            {this.renderFilters(args, updateFunc)}
+        <div className='column'>
+          <div>Feature Version*</div>
+          <Radio.Group
+            name='feature_version'
+            defaultValue={args.feature_version}
+            onChange={e => { args.feature_version = e.target.value; updateFunc() }}
+            options={this.generateVersions()}
+          />
         </div>
+      </>
+    )
+  }
+
+  renderTrackingFilters (args, updateFunc) {
+    return (
+      <div className='filters'>
+        <div className='column'>
+          <div>Visible</div>
+          <Checkbox
+            defaultChecked={args.visible}
+            onChange={e => { args.visible = e.target.checked; updateFunc() }}
+          />
+        </div>
+        <div className='column'>
+          <div>Type</div>
+          <Radio.Group
+            name='type'
+            defaultValue={args.type}
+            onChange={e => { args.type = e.target.value; updateFunc() }}
+            options={[
+              { label: 'Daily', value: 'daily' },
+              { label: 'Total', value: 'total' }
+            ]}
+          />
+        </div>
+        {this.renderFilters(args, updateFunc)}
+      </div>
+    )
+  }
+
+  renderMonthlyFilters (args, updateFunc) {
+    return (
+      <div className='filters'>
+        <div className='column'>
+          <div>Type</div>
+          <Radio.Group
+            name='type'
+            defaultValue={args.type}
+            onChange={e => { args.type = e.target.value; updateFunc() }}
+            options={[
+              { label: 'Monthly', value: 'monthly' },
+              { label: 'Total', value: 'total' }
+            ]}
+          />
+        </div>
+        {this.renderFilters(args, updateFunc)}
+      </div>
+    )
+  }
+
+  generateVersions () {
+    const versionOpts = [{ label: 'All', value: undefined }]
+    const versions = this.state.versions
+
+    if (versions) {
+      for (const version of versions) {
+        versionOpts.push({ label: 'JDK ' + version, value: version })
+      }
     }
 
-    generateVersions() {
-        var versionOpts = [{label: 'All', value: undefined}]
-        var versions = this.state.versions
+    return versionOpts
+  }
 
-        if (versions) {
-            for(var version of versions) {
-                versionOpts.push({label: 'JDK ' + version, value: version})
-            }
-        }
+  createSeries (series, series2) {
+    series.data.splice(0, series.data.lastIndexOf(null) + 1)
+    series2.data.splice(0, series2.data.lastIndexOf(null) + 1)
 
-        return versionOpts
+    const diff = series.data.length - series2.data.length
+    let fullSeries = []
+
+    if (diff > 0) {
+      fullSeries = [series, this.padArray(series2, diff)]
+    } else if (diff < 0) {
+      fullSeries = [this.padArray(series, -diff), series2]
+    } else {
+      fullSeries = [series, series2]
     }
 
-    createSeries(series, series2) {
-        series.data.splice(0, series.data.lastIndexOf(null)+1)
-        series2.data.splice(0, series2.data.lastIndexOf(null)+1)
+    return fullSeries
+  }
 
-        let diff = series.data.length - series2.data.length;
-        let fullSeries = []
-
-        if(diff>0) {
-            fullSeries = [series, this.padArray(series2, diff)]
-
-        } else if (diff<0) {
-            fullSeries = [this.padArray(series, -diff), series2]
-
-        } else {
-            fullSeries = [series, series2]
-        }
-
-        return fullSeries
+  padArray (state, diff) {
+    for (let i = 0; i < diff; i++) {
+      state.data.unshift(null)
     }
 
-    padArray(state, diff) {
-        for (var i=0; i< diff; i++) {
-            state.data.unshift(null)
-        }
+    return state
+  }
 
-        return state
+  max (arr1, arr2) {
+    if (arr1.length > arr2.length) {
+      return arr1
+    } else {
+      return arr2
     }
+  }
 
-    max(arr1, arr2) {
-        if (arr1.length > arr2.length) {
-            return arr1
-        } else {
-            return arr2
-        }
-    }
+  render () {
+    const state = this.state
 
-    render() {
-        let state = this.state;
-    
-        if (!state.series || !state.series2 || !state.monthlyData) return null;
+    if (!state.series || !state.series2 || !state.monthlyData) return null
 
-        return <>
-            <LineChart series={this.createSeries(state.series, state.series2)} categories={this.max(state.categories, state.categories2)} name="Tracking Trends" />
-            <div className="filters-box">
-                {this.renderTrackingFilters(state.args, () => {this.updateData(1, state.args)} )}
-                {this.renderTrackingFilters(state.args2, () => {this.updateData(2, state.args2)})}
-                <div className="column days">
-                    <div>Days</div>
-                    <Slider 
-                        defaultValue={state.days}
-                        max={180}
-                        onAfterChange={value => {state.days = value; this.updateData(1, this.state.args); this.updateData(2, this.state.args2)}}
-                    />
-                </div>
-            </div>
-            <BarChart data={state.monthlyData} name="Monthly Trends" />
-            <div className="filters-box">
-                {this.renderMonthlyFilters(state.monthlyArgs, () => {this.updateMonthlyData(state.monthlyArgs)})}
-            </div>
-            <p>*Does not include results from the Official Docker Repo</p>
-        </>
-    }
+    return (
+      <>
+        <LineChart series={this.createSeries(state.series, state.series2)} categories={this.max(state.categories, state.categories2)} name='Tracking Trends' />
+        <div className='filters-box'>
+          {this.renderTrackingFilters(state.args, () => { this.updateData(1, state.args) })}
+          {this.renderTrackingFilters(state.args2, () => { this.updateData(2, state.args2) })}
+          <div className='column days'>
+            <div>Days</div>
+            <Slider
+              defaultValue={state.days}
+              max={180}
+              onAfterChange={value => { state.days = value; this.updateData(1, this.state.args); this.updateData(2, this.state.args2) }}
+            />
+          </div>
+        </div>
+        <BarChart data={state.monthlyData} name='Monthly Trends' />
+        <div className='filters-box'>
+          {this.renderMonthlyFilters(state.monthlyArgs, () => { this.updateMonthlyData(state.monthlyArgs) })}
+        </div>
+        <p>*Does not include results from the Official Docker Repo</p>
+      </>
+    )
+  }
 }
