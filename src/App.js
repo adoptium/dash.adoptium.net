@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
-import { ConfigProvider, Layout, Menu, Icon } from 'antd';
-import enUS from 'antd/lib/locale-provider/en_US';
-import ErrorBoundary from './ErrorBoundary';
+import { ConfigProvider, Layout, Menu, Button } from 'antd';
+import en_US from "antd/lib/locale/en_US";
 import { Download, Trends } from './Graph/';
-import 'antd/dist/antd.css';
 import AdoptiumLogo from './Adoptiumlogo.svg';
 import NavigationMenu from './Components/NavigationMenu';
+import ErrorBoundary from './ErrorBoundary';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 
 const { Header, Content, Sider } = Layout;
-
-export default class extends Component {
+ 
+export default class App extends Component {
 	state = {
 		collapsed: false,
 	};
@@ -22,7 +22,7 @@ export default class extends Component {
 	};
 
 	render() {
-		return <ConfigProvider locale={enUS}>
+		return <ConfigProvider locale={en_US}>
 			<Layout>
 				<Header className="header" style={{ background: '#14003c' }}>
 					<div className="logo" />
@@ -34,7 +34,6 @@ export default class extends Component {
 					>
 						<Menu.Item key="1"><a href="https://adoptium.net/" style={{ height: '100%', display: 'flex' }}><img src={AdoptiumLogo} style={{height: '3.5em', paddingTop: '1em'}} /></a></Menu.Item>
 					</Menu>
-
 				</Header>
 				<Layout>
 					<Sider width={200} style={{ background: '#fff' }} trigger={null} collapsible collapsed={this.state.collapsed}>
@@ -43,11 +42,7 @@ export default class extends Component {
 					<Layout style={{ padding: '0 24px 24px' }}>
 						<ErrorBoundary>
 							<Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
-								<Icon
-									className="trigger"
-									type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-									onClick={this.toggle}
-								/>
+								<Button onClick={this.toggle} type="link" shape="circle" icon={this.state.collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />} />
 								<Route exact path="/" component={Download} />
 								<Route path="/download" component={Download} />
 								<Route path="/trends" component={Trends} />

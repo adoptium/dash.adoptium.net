@@ -6,6 +6,7 @@ import BarChart from "./BarChart.js";
 import PieChart from "./PieChart.js";
 import ColumnDrilldown from "./ColumnDrilldown.js";
 import startCase from 'lodash/startCase';
+import { CloudDownloadOutlined, LineChartOutlined } from '@ant-design/icons';
 
 export default class DownloadTotal extends Component {
     state = { data: undefined };
@@ -49,7 +50,7 @@ export default class DownloadTotal extends Component {
         return <>
             <div style={{ textAlign: "center" }}>
                 <div ><p style={{ fontSize: 20, color: "rgb(107,164,231)" }}>Adoptium Download Stats</p></div>
-                <div ><Icon type="cloud-download" style={{ fontSize: 20, color: "rgb(48,135,255)" }} /><h2 >{total}</h2><p >Total Downloads/Docker pulls Ever</p></div>
+                <div ><CloudDownloadOutlined style={{ fontSize: 20, color: "rgb(48,135,255)" }}/><h2 >{total}</h2><p >Total Downloads/Docker pulls Ever</p></div>
             </div>
             <Divider />
             <div style={{ display: "flex" }}>

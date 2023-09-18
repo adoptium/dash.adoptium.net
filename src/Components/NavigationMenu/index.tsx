@@ -1,7 +1,8 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { Menu, Icon } from 'antd';
+import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
+import { CloudDownloadOutlined, LineChartOutlined } from '@ant-design/icons';
 
 const NavigationMenu = (): JSX.Element => {
     const location = useLocation();
@@ -18,9 +19,9 @@ const NavigationMenu = (): JSX.Element => {
             selectedKeys={getSelectedKeysByUrl()}
             style={{ height: '100%', borderRight: 0, marginTop: 20 }}
         >
-            <Menu.Item key="1"><Link to="/download"><Icon type="cloud-download" />Download</Link></Menu.Item>
-            <Menu.Item key="2"><Link to="/trends"><Icon type="line-chart" />Trends</Link></Menu.Item>
-        </Menu>
+            <Menu.Item key="1"><Link to="/download"><CloudDownloadOutlined /> Download</Link></Menu.Item>
+            <Menu.Item key="2"><Link to="/trends"><LineChartOutlined /> Trends</Link></Menu.Item>
+         </Menu>
     )
 }
 
