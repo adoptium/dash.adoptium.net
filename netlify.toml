@@ -3,7 +3,7 @@ publish = "dist"
 command = "npm run build"
 
 [build.environment]
-NODE_VERSION = "18.17.0"
+NODE_VERSION = "18"
 
 [[headers]]
   for = "/*"
@@ -14,3 +14,8 @@ NODE_VERSION = "18.17.0"
     preload'''
     X-Content-Type-Options = "nosniff"
     X-Frame-Options = "DENY"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
