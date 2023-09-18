@@ -1,6 +1,7 @@
 node_modules
 dist
 .cache
+.parcel-cache
 .project
 .DS_Store
 .parcel-cache
