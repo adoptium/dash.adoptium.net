@@ -7,6 +7,18 @@ import moment from 'moment'
 import { Radio, Slider, Checkbox } from 'antd'
 import './Trends.css'
 
+const TypeFilter = ({ defaultValue, onChange, options }) => (
+  <div className='column'>
+    <div>Type</div>
+    <Radio.Group
+      name='type'
+      defaultValue={defaultValue}
+      onChange={onChange}
+      options={options}
+    />
+  </div>
+)
+
 export default class Trends extends Component {
   state = {
     series: undefined,
@@ -146,18 +158,14 @@ export default class Trends extends Component {
             onChange={e => { args.visible = e.target.checked; updateFunc() }}
           />
         </div>
-        <div className='column'>
-          <div>Type</div>
-          <Radio.Group
-            name='type'
-            defaultValue={args.type}
-            onChange={e => { args.type = e.target.value; updateFunc() }}
-            options={[
-              { label: 'Daily', value: 'daily' },
-              { label: 'Total', value: 'total' }
-            ]}
-          />
-        </div>
+        <TypeFilter
+          defaultValue={args.type}
+          onChange={e => { args.type = e.target.value; updateFunc() }}
+          options={[
+            { label: 'Daily', value: 'daily' },
+            { label: 'Total', value: 'total' }
+          ]}
+        />
         {this.renderFilters(args, updateFunc)}
       </div>
     )
@@ -166,18 +174,14 @@ export default class Trends extends Component {
   renderMonthlyFilters (args, updateFunc) {
     return (
       <div className='filters'>
-        <div className='column'>
-          <div>Type</div>
-          <Radio.Group
-            name='type'
-            defaultValue={args.type}
-            onChange={e => { args.type = e.target.value; updateFunc() }}
-            options={[
-              { label: 'Monthly', value: 'monthly' },
-              { label: 'Total', value: 'total' }
-            ]}
-          />
-        </div>
+        <TypeFilter
+          defaultValue={args.type}
+          onChange={e => { args.type = e.target.value; updateFunc() }}
+          options={[
+            { label: 'Monthly', value: 'monthly' },
+            { label: 'Total', value: 'total' }
+          ]}
+        />
         {this.renderFilters(args, updateFunc)}
       </div>
     )

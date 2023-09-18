@@ -4,7 +4,7 @@ Thanks for your interest in this project.
 
 ## Project description
 
-blog.adoptium.net is a project to regroup assets for the Eclipse Foundation look and feel. 
+blog.adoptium.net is a project to regroup assets for the Eclipse Foundation look and feel.
 
 * https://github.com/adoptium/dash.adoptium.net
 
