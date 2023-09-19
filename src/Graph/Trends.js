@@ -4,7 +4,7 @@ import { get } from '../utils'
 import LineChart from './LineChart'
 import BarChart from './BarChart'
 import moment from 'moment'
-import { Radio, Slider, Checkbox } from 'antd'
+import { Radio, Slider, Checkbox, Spin } from 'antd'
 import './Trends.css'
 
 const TypeFilter = ({ defaultValue, onChange, options }) => (
@@ -237,7 +237,11 @@ export default class Trends extends Component {
   render () {
     const state = this.state
 
-    if (!state.series || !state.series2 || !state.monthlyData) return null
+    if (!state.series || !state.series2 || !state.monthlyData) return (
+      <Spin tip="Loading" size="large">
+        <div className="content" />
+      </Spin>
+    )
 
     return (
       <>
