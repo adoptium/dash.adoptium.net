@@ -4,7 +4,13 @@ import HighchartsReact from 'highcharts-react-official'
 import startCase from 'lodash/startCase'
 import './Graph.css'
 
-export default class BarChart extends Component {
+interface BarChartProps {
+  data?: { [key: string]: number };
+  name: string;
+  startCaseKeys?: boolean;
+}
+
+export default class BarChart extends Component<BarChartProps> {
   render () {
     const { data, name, startCaseKeys } = this.props
     if (!data) return null
