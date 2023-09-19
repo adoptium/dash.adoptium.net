@@ -43,8 +43,8 @@ export default class DownloadTotal extends Component {
 
     if (!data) {
       return (
-        <Spin tip="Loading" size="large">
-          <div className="content" />
+        <Spin tip='Loading' size='large'>
+          <div className='content' />
         </Spin>
       )
     }
