@@ -2,21 +2,32 @@ import React, { Component } from 'react'
 import { Divider } from 'antd'
 import { api } from '../api'
 import { formatNum } from '../utils'
-import BarChart from './BarChart.js'
-import PieChart from './PieChart.js'
-import ColumnDrilldown from './ColumnDrilldown.js'
+import BarChart from './BarChart'
+import PieChart from './PieChart'
+import ColumnDrilldown from './ColumnDrilldown'
 import startCase from 'lodash/startCase'
 import { CloudDownloadOutlined } from '@ant-design/icons'
 
-export default class DownloadTotal extends Component {
-  state = { data: undefined }
-  async componentDidMount () {
+interface DownloadTotalState {
+  data?: {
+    total_downloads: Record<string, number>,
+    github_downloads?: Record<string, number>,
+    docker_pulls?: Record<string, number>
+  },
+  totalPieChartData?: Array<{ name: string, y: number }>,
+  pieChartData?: Array<{ name: string, y: number }>
+}
+
+export default class DownloadTotal extends Component<{}, DownloadTotalState> {
+  state: DownloadTotalState = { data: undefined }
+
+  async componentDidMount() {
     await this.updateData()
   }
 
-  async updateData () {
+  async updateData() {
     const data = await api.downloads()
-    let totalPieChartData = []
+    let totalPieChartData: Array<{ name: string, y: number }> = []
     if (data && data.total_downloads) {
       totalPieChartData = Object.keys(data.total_downloads)
         .filter(key => key !== 'total')
@@ -26,7 +37,7 @@ export default class DownloadTotal extends Component {
         }))
     }
     const jdk8Data = await api.downloads('8/jdk8u222-b10')
-    let pieChartData = []
+    let pieChartData: Array<{ name: string, y: number }> = []
     if (jdk8Data) {
       pieChartData = Object.keys(jdk8Data).map(key => {
         return {
@@ -38,7 +49,7 @@ export default class DownloadTotal extends Component {
     this.setState({ data, totalPieChartData, pieChartData })
   }
 
-  render () {
+  render() {
     const { data, totalPieChartData } = this.state
     if (!data) return null
     const total = formatNum(data.total_downloads.total)
