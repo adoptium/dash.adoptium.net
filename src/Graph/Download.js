@@ -41,11 +41,13 @@ export default class DownloadTotal extends Component {
   render () {
     const { data, totalPieChartData } = this.state
 
-    if (!data) return (
-      <Spin tip="Loading" size="large">
-        <div className="content" />
-      </Spin>
-    )
+    if (!data) {
+      return (
+        <Spin tip="Loading" size="large">
+          <div className="content" />
+        </Spin>
+      )
+    }
 
     const total = formatNum(data.total_downloads.total)
 

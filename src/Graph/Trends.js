@@ -237,11 +237,13 @@ export default class Trends extends Component {
   render () {
     const state = this.state
 
-    if (!state.series || !state.series2 || !state.monthlyData) return (
-      <Spin tip="Loading" size="large">
-        <div className="content" />
-      </Spin>
-    )
+    if (!state.series || !state.series2 || !state.monthlyData) {
+      return (
+        <Spin tip="Loading" size="large">
+          <div className="content" />
+        </Spin>
+      )
+    }
 
     return (
       <>
