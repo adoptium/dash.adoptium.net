@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router'
 import { ConfigProvider, Layout, Menu, Button } from 'antd'
+import Highcharts from 'highcharts'
+import AccessibilityModule from 'highcharts/modules/accessibility'
 import enUs from 'antd/lib/locale/en_US'
 import { Download, Trends } from './Graph'
 import AdoptiumLogo from './Adoptiumlogo.svg'
@@ -8,7 +10,16 @@ import NavigationMenu from './Components/NavigationMenu'
 import ErrorBoundary from './ErrorBoundary'
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 
+AccessibilityModule(Highcharts)
+
 const { Header, Content, Sider } = Layout
+
+const menuItems = [
+  {
+    key: '1',
+    icon: <a href='https://adoptium.net/' style={{ height: '100%', display: 'flex' }}><img alt='Adoptium Logo' src={AdoptiumLogo} style={{ height: '3.5em', paddingTop: '.5em' }} /></a>
+  }
+]
 
 export default class App extends Component {
   state = {
@@ -31,10 +42,9 @@ export default class App extends Component {
               theme='dark'
               mode='horizontal'
               defaultSelectedKeys={['2']}
-              style={{ lineHeight: '64px', background: '#14003c' }}
-            >
-              <Menu.Item key='1'><a href='https://adoptium.net/' style={{ height: '100%', display: 'flex' }}><img src={AdoptiumLogo} style={{ height: '3.5em', paddingTop: '1em' }} /></a></Menu.Item>
-            </Menu>
+              style={{ lineHeight: '15px', background: '#14003c' }}
+              items={menuItems}
+            />
           </Header>
           <Layout>
             <Sider width={200} style={{ background: '#fff' }} trigger={null} collapsible collapsed={this.state.collapsed}>

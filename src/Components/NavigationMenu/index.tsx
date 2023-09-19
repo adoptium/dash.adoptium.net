@@ -13,15 +13,26 @@ const NavigationMenu = (): JSX.Element => {
         else if(location.pathname === '/trends') return ['2'];
     }
 
+    const menuItems = [
+        {
+          key: '1',
+          icon: <CloudDownloadOutlined />,
+          label: <Link to="/download"> Download</Link>
+        },
+        {
+          key: '2',
+          icon: <LineChartOutlined />,
+          label: <Link to="/trends"> Trends</Link>
+        }
+    ];
+
     return (
         <Menu
             mode="inline"
             selectedKeys={getSelectedKeysByUrl()}
             style={{ height: '100%', borderRight: 0, marginTop: 20 }}
-        >
-            <Menu.Item key="1"><Link to="/download"><CloudDownloadOutlined /> Download</Link></Menu.Item>
-            <Menu.Item key="2"><Link to="/trends"><LineChartOutlined /> Trends</Link></Menu.Item>
-         </Menu>
+            items={menuItems}
+        />
     )
 }
 
