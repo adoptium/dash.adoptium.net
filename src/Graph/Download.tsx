@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Divider } from 'antd'
+import { Divider, Spin } from 'antd'
 import { api } from '../api'
 import { formatNum } from '../utils'
 import BarChart from './BarChart'
@@ -51,7 +51,15 @@ export default class DownloadTotal extends Component<{}, DownloadTotalState> {
 
   render() {
     const { data, totalPieChartData } = this.state
-    if (!data) return null
+
+    if (!data) {
+      return (
+        <Spin tip='Loading' size='large'>
+          <div className='content' />
+        </Spin>
+      )
+    }
+
     const total = formatNum(data.total_downloads.total)
 
     return (
