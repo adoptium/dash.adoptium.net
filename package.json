@@ -37,5 +37,11 @@
         "react-router-dom": "^5.3.4",
         "static-server": "^2.2.1",
         "vitest": "^0.34.4"
+    },
+    "ts-standard": {
+        "ignore": [
+            "vitest-setup.ts",
+            "vitest.config.ts"
+        ]
     }
 }
