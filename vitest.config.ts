@@ -6,7 +6,7 @@ export default defineConfig({
     {
       name: 'load-svg',
       enforce: 'pre',
-      transform (_, id) {
+      transform(_, id) {
         if (id.endsWith('.svg')) {
           return 'export default \'img\''
         }
