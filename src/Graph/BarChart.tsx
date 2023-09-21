@@ -16,6 +16,9 @@ export default class BarChart extends Component<BarChartProps> {
     if (!data) return null
 
     const options = {
+      accessibility: {
+        enabled: false,
+      },
       chart: {
         type: 'column'
       },

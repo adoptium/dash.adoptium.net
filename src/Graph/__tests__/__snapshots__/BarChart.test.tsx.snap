@@ -1,0 +1,783 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BarChart component > renders correctly 1`] = `
+<div>
+  <div
+    class="chart"
+  >
+    <div
+      data-highcharts-chart="0"
+      style="overflow: hidden;"
+    >
+      <div
+        class="highcharts-container "
+        dir="ltr"
+        id="highcharts-0"
+        style="position: relative; overflow: hidden; width: 600px; height: 400px; text-align: left; line-height: normal; z-index: 0; user-select: none; outline: none;"
+      >
+        <svg
+          aria-label="Downloads"
+          class="highcharts-root"
+          height="400"
+          role="img"
+          style="font-family: Helvetica, Arial, sans-serif; font-size: 1rem;"
+          version="1.1"
+          viewBox="0 0 600 400"
+          width="600"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <desc>
+            Created with Highcharts 11.1.0
+          </desc>
+          <defs>
+            <filter
+              id="highcharts-drop-shadow-0"
+            >
+              <fedropshadow
+                dx="1"
+                dy="1"
+                flood-color="#000000"
+                flood-opacity="0.75"
+                stdDeviation="2.5"
+              />
+            </filter>
+            <clippath
+              id="highcharts-1-"
+            >
+              <rect
+                fill="none"
+                height="NaN"
+                width="NaN"
+                x="0"
+                y="0"
+              />
+            </clippath>
+            <clippath
+              id="highcharts-14-"
+            >
+              <rect
+                fill="none"
+                height="NaN"
+                width="NaN"
+                x="0"
+                y="0"
+              />
+            </clippath>
+          </defs>
+          <rect
+            class="highcharts-background"
+            fill="#ffffff"
+            filter="none"
+            height="400"
+            rx="0"
+            ry="0"
+            width="600"
+            x="0"
+            y="0"
+          />
+          <rect
+            class="highcharts-plot-background"
+            fill="none"
+            filter="none"
+            height="NaN"
+            width="NaN"
+            x="NaN"
+            y="10"
+          />
+          <g
+            class="highcharts-grid highcharts-xaxis-grid"
+            data-z-index="1"
+          >
+            <path
+              class="highcharts-grid-line"
+              d="M 0 0"
+              data-z-index="1"
+              fill="none"
+              opacity="1"
+              stroke="#e6e6e6"
+              stroke-dasharray="none"
+              stroke-width="0"
+            />
+            <path
+              class="highcharts-grid-line"
+              d="M 0 0"
+              data-z-index="1"
+              fill="none"
+              opacity="1"
+              stroke="#e6e6e6"
+              stroke-dasharray="none"
+              stroke-width="0"
+            />
+            <path
+              class="highcharts-grid-line"
+              d="M 0 0"
+              data-z-index="1"
+              fill="none"
+              opacity="1"
+              stroke="#e6e6e6"
+              stroke-dasharray="none"
+              stroke-width="0"
+            />
+            <path
+              class="highcharts-grid-line"
+              d="M 0 0"
+              data-z-index="1"
+              fill="none"
+              opacity="1"
+              stroke="#e6e6e6"
+              stroke-dasharray="none"
+              stroke-width="0"
+            />
+            <path
+              class="highcharts-grid-line"
+              d="M 0 0"
+              data-z-index="1"
+              fill="none"
+              opacity="1"
+              stroke="#e6e6e6"
+              stroke-dasharray="none"
+              stroke-width="0"
+            />
+            <path
+              class="highcharts-grid-line"
+              d="M 0 0"
+              data-z-index="1"
+              fill="none"
+              opacity="1"
+              stroke="#e6e6e6"
+              stroke-dasharray="none"
+              stroke-width="0"
+            />
+            <path
+              class="highcharts-grid-line"
+              d="M 0 0"
+              data-z-index="1"
+              fill="none"
+              opacity="1"
+              stroke="#e6e6e6"
+              stroke-dasharray="none"
+              stroke-width="0"
+            />
+            <path
+              class="highcharts-grid-line"
+              d="M 0 0"
+              data-z-index="1"
+              fill="none"
+              opacity="1"
+              stroke="#e6e6e6"
+              stroke-dasharray="none"
+              stroke-width="0"
+            />
+            <path
+              class="highcharts-grid-line"
+              d="M 0 0"
+              data-z-index="1"
+              fill="none"
+              opacity="1"
+              stroke="#e6e6e6"
+              stroke-dasharray="none"
+              stroke-width="0"
+            />
+            <path
+              class="highcharts-grid-line"
+              d="M 0 0"
+              data-z-index="1"
+              fill="none"
+              opacity="1"
+              stroke="#e6e6e6"
+              stroke-dasharray="none"
+              stroke-width="0"
+            />
+            <path
+              class="highcharts-grid-line"
+              d="M 0 0"
+              data-z-index="1"
+              fill="none"
+              opacity="1"
+              stroke="#e6e6e6"
+              stroke-dasharray="none"
+              stroke-width="0"
+            />
+            <path
+              class="highcharts-grid-line"
+              d="M 0 0"
+              data-z-index="1"
+              fill="none"
+              opacity="1"
+              stroke="#e6e6e6"
+              stroke-dasharray="none"
+              stroke-width="0"
+            />
+            <path
+              class="highcharts-grid-line"
+              d="M 0 0"
+              data-z-index="1"
+              fill="none"
+              opacity="1"
+              stroke="#e6e6e6"
+              stroke-dasharray="none"
+              stroke-width="0"
+            />
+          </g>
+          <g
+            class="highcharts-grid highcharts-yaxis-grid"
+            data-z-index="1"
+          >
+            <path
+              class="highcharts-grid-line"
+              d="M 0 0"
+              data-z-index="1"
+              fill="none"
+              opacity="1"
+              stroke="#e6e6e6"
+              stroke-dasharray="none"
+              stroke-width="1"
+            />
+            <path
+              class="highcharts-grid-line"
+              d="M 0 0"
+              data-z-index="1"
+              fill="none"
+              opacity="1"
+              stroke="#e6e6e6"
+              stroke-dasharray="none"
+              stroke-width="1"
+            />
+            <path
+              class="highcharts-grid-line"
+              d="M 0 0"
+              data-z-index="1"
+              fill="none"
+              opacity="1"
+              stroke="#e6e6e6"
+              stroke-dasharray="none"
+              stroke-width="1"
+            />
+            <path
+              class="highcharts-grid-line"
+              d="M 0 0"
+              data-z-index="1"
+              fill="none"
+              opacity="1"
+              stroke="#e6e6e6"
+              stroke-dasharray="none"
+              stroke-width="1"
+            />
+            <path
+              class="highcharts-grid-line"
+              d="M 0 0"
+              data-z-index="1"
+              fill="none"
+              opacity="1"
+              stroke="#e6e6e6"
+              stroke-dasharray="none"
+              stroke-width="1"
+            />
+          </g>
+          <rect
+            class="highcharts-plot-border"
+            data-z-index="1"
+            fill="none"
+            height="0"
+            stroke="#cccccc"
+            stroke-width="0"
+            width="0"
+            x="0"
+            y="10"
+          />
+          <g
+            class="highcharts-axis highcharts-xaxis"
+            data-z-index="2"
+          >
+            <path
+              class="highcharts-axis-line"
+              d="M 0 0"
+              data-z-index="7"
+              fill="none"
+              stroke="#333333"
+              stroke-width="1"
+            />
+          </g>
+          <g
+            class="highcharts-axis highcharts-yaxis"
+            data-z-index="2"
+          >
+            <text
+              class="highcharts-axis-title"
+              data-z-index="7"
+              style="color: rgb(102, 102, 102); font-size: 0.8em; fill: #666666;"
+              text-anchor="middle"
+              transform="translate(0,0) rotate(270 NaN NaN)"
+              x="NaN"
+              y="NaN"
+            >
+              Downloads
+            </text>
+            <path
+              class="highcharts-axis-line"
+              d="M 0 0"
+              data-z-index="7"
+              fill="none"
+              stroke="#333333"
+              stroke-width="0"
+            />
+          </g>
+          <g
+            class="highcharts-series-group"
+            data-z-index="3"
+            filter="none"
+          >
+            <g
+              class="highcharts-series highcharts-series-0 highcharts-column-series highcharts-color-0 highcharts-tracker"
+              clip-path="url(#highcharts-14-)"
+              data-z-index="0.1"
+              opacity="1"
+              transform="translate(NaN,10) scale(1 0.001)"
+            />
+            <g
+              class="highcharts-markers highcharts-series-0 highcharts-column-series highcharts-color-0"
+              clip-path="none"
+              data-z-index="0.1"
+              opacity="1"
+              transform="translate(NaN,10) scale(1 1)"
+            />
+          </g>
+          <text
+            class="highcharts-title"
+            data-z-index="4"
+            style="font-size: 1.2em; color: rgb(51, 51, 51); font-weight: bold; fill: #333333;"
+            text-anchor="middle"
+            x="300"
+            y="10"
+          >
+            Downloads
+          </text>
+          <text
+            class="highcharts-caption"
+            data-z-index="4"
+            style="color: rgb(102, 102, 102); font-size: 0.8em; fill: #666666;"
+            text-anchor="start"
+            x="10"
+            y="387"
+          />
+          <g
+            class="highcharts-data-labels highcharts-series-0 highcharts-column-series highcharts-color-0 highcharts-tracker"
+            data-z-index="6"
+            opacity="0"
+            transform="translate(NaN,10) scale(1 1)"
+          >
+            <g
+              class="highcharts-label highcharts-data-label highcharts-data-label-color-0"
+              data-z-index="1"
+              filter="none"
+              transform="translate(0,0)"
+              visibility="hidden"
+            >
+              <text
+                data-z-index="1"
+                style="color: rgb(0, 0, 0); font-size: 0.7em; font-weight: bold; fill: #000000;"
+                x="5"
+                y="7"
+              >
+                3 238 608
+              </text>
+            </g>
+            <g
+              class="highcharts-label highcharts-data-label highcharts-data-label-color-0"
+              data-z-index="1"
+              filter="none"
+              transform="translate(0,0)"
+              visibility="hidden"
+            >
+              <text
+                data-z-index="1"
+                style="color: rgb(0, 0, 0); font-size: 0.7em; font-weight: bold; fill: #000000;"
+                x="5"
+                y="7"
+              >
+                513 472
+              </text>
+            </g>
+            <g
+              class="highcharts-label highcharts-data-label highcharts-data-label-color-0"
+              data-z-index="1"
+              filter="none"
+              transform="translate(0,0)"
+              visibility="hidden"
+            >
+              <text
+                data-z-index="1"
+                style="color: rgb(0, 0, 0); font-size: 0.7em; font-weight: bold; fill: #000000;"
+                x="5"
+                y="7"
+              >
+                5 815 865
+              </text>
+            </g>
+            <g
+              class="highcharts-label highcharts-data-label highcharts-data-label-color-0"
+              data-z-index="1"
+              filter="none"
+              transform="translate(0,0)"
+              visibility="hidden"
+            >
+              <text
+                data-z-index="1"
+                style="color: rgb(0, 0, 0); font-size: 0.7em; font-weight: bold; fill: #000000;"
+                x="5"
+                y="7"
+              >
+                4 010 319
+              </text>
+            </g>
+            <g
+              class="highcharts-label highcharts-data-label highcharts-data-label-color-0"
+              data-z-index="1"
+              filter="none"
+              transform="translate(0,0)"
+              visibility="hidden"
+            >
+              <text
+                data-z-index="1"
+                style="color: rgb(0, 0, 0); font-size: 0.7em; font-weight: bold; fill: #000000;"
+                x="5"
+                y="7"
+              >
+                6 751 030
+              </text>
+            </g>
+            <g
+              class="highcharts-label highcharts-data-label highcharts-data-label-color-0"
+              data-z-index="1"
+              filter="none"
+              transform="translate(0,0)"
+              visibility="hidden"
+            >
+              <text
+                data-z-index="1"
+                style="color: rgb(0, 0, 0); font-size: 0.7em; font-weight: bold; fill: #000000;"
+                x="5"
+                y="7"
+              >
+                629 406
+              </text>
+            </g>
+            <g
+              class="highcharts-label highcharts-data-label highcharts-data-label-color-0"
+              data-z-index="1"
+              filter="none"
+              transform="translate(0,0)"
+              visibility="hidden"
+            >
+              <text
+                data-z-index="1"
+                style="color: rgb(0, 0, 0); font-size: 0.7em; font-weight: bold; fill: #000000;"
+                x="5"
+                y="7"
+              >
+                61 770
+              </text>
+            </g>
+            <g
+              class="highcharts-label highcharts-data-label highcharts-data-label-color-0"
+              data-z-index="1"
+              filter="none"
+              transform="translate(0,0)"
+              visibility="hidden"
+            >
+              <text
+                data-z-index="1"
+                style="color: rgb(0, 0, 0); font-size: 0.7em; font-weight: bold; fill: #000000;"
+                x="5"
+                y="7"
+              >
+                3 035 189
+              </text>
+            </g>
+            <g
+              class="highcharts-label highcharts-data-label highcharts-data-label-color-0"
+              data-z-index="1"
+              filter="none"
+              transform="translate(0,0)"
+              visibility="hidden"
+            >
+              <text
+                data-z-index="1"
+                style="color: rgb(0, 0, 0); font-size: 0.7em; font-weight: bold; fill: #000000;"
+                x="5"
+                y="7"
+              >
+                2 791 698
+              </text>
+            </g>
+            <g
+              class="highcharts-label highcharts-data-label highcharts-data-label-color-0"
+              data-z-index="1"
+              filter="none"
+              transform="translate(0,0)"
+              visibility="hidden"
+            >
+              <text
+                data-z-index="1"
+                style="color: rgb(0, 0, 0); font-size: 0.7em; font-weight: bold; fill: #000000;"
+                x="5"
+                y="7"
+              >
+                3 866 298
+              </text>
+            </g>
+            <g
+              class="highcharts-label highcharts-data-label highcharts-data-label-color-0"
+              data-z-index="1"
+              filter="none"
+              transform="translate(0,0)"
+              visibility="hidden"
+            >
+              <text
+                data-z-index="1"
+                style="color: rgb(0, 0, 0); font-size: 0.7em; font-weight: bold; fill: #000000;"
+                x="5"
+                y="7"
+              >
+                3 210 329
+              </text>
+            </g>
+            <g
+              class="highcharts-label highcharts-data-label highcharts-data-label-color-0"
+              data-z-index="1"
+              filter="none"
+              transform="translate(0,0)"
+              visibility="hidden"
+            >
+              <text
+                data-z-index="1"
+                style="color: rgb(0, 0, 0); font-size: 0.7em; font-weight: bold; fill: #000000;"
+                x="5"
+                y="7"
+              >
+                1 929 984
+              </text>
+            </g>
+          </g>
+          <g
+            class="highcharts-legend highcharts-no-tooltip"
+            data-z-index="7"
+            transform="translate(300,367)"
+          >
+            <rect
+              class="highcharts-legend-box"
+              fill="none"
+              filter="none"
+              rx="0"
+              ry="0"
+              stroke="#999999"
+              stroke-width="0"
+            />
+            <g
+              data-z-index="1"
+            >
+              <g>
+                <g
+                  class="highcharts-legend-item highcharts-column-series highcharts-color-0 highcharts-series-0"
+                  data-z-index="1"
+                  transform="translate(8,3)"
+                >
+                  <text
+                    data-z-index="2"
+                    style="color: rgb(51, 51, 51); cursor: pointer; font-size: 0.8em; text-decoration: none; fill: #333333;"
+                    text-anchor="start"
+                    x="21"
+                    y="5"
+                  >
+                    Downloads
+                  </text>
+                  <rect
+                    class="highcharts-point"
+                    data-z-index="3"
+                    fill="#2caffe"
+                    height="0"
+                    rx="0"
+                    ry="0"
+                    width="0"
+                    x="8"
+                    y="6"
+                  />
+                </g>
+              </g>
+            </g>
+          </g>
+          <g
+            class="highcharts-axis-labels highcharts-xaxis-labels"
+            data-z-index="7"
+          >
+            <text
+              style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: #333333;"
+              text-anchor="middle"
+              transform="translate(0,0)"
+              x="0"
+            >
+              jdk8u302-b08
+            </text>
+            <text
+              style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: #333333;"
+              text-anchor="middle"
+              transform="translate(0,0)"
+              x="0"
+            >
+              jdk8u302-b08.1
+            </text>
+            <text
+              style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: #333333;"
+              text-anchor="middle"
+              transform="translate(0,0)"
+              x="0"
+            >
+              jdk8u312-b07
+            </text>
+            <text
+              style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: #333333;"
+              text-anchor="middle"
+              transform="translate(0,0)"
+              x="0"
+            >
+              jdk8u322-b06
+            </text>
+            <text
+              style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: #333333;"
+              text-anchor="middle"
+              transform="translate(0,0)"
+              x="0"
+            >
+              jdk8u332-b09
+            </text>
+            <text
+              style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: #333333;"
+              text-anchor="middle"
+              transform="translate(0,0)"
+              x="0"
+            >
+              jdk8u342-b07
+            </text>
+            <text
+              style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: #333333;"
+              text-anchor="middle"
+              transform="translate(0,0)"
+              x="0"
+            >
+              jdk8u342-b07.1
+            </text>
+            <text
+              style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: #333333;"
+              text-anchor="middle"
+              transform="translate(0,0)"
+              x="0"
+            >
+              jdk8u345-b01
+            </text>
+            <text
+              style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: #333333;"
+              text-anchor="middle"
+              transform="translate(0,0)"
+              x="0"
+            >
+              jdk8u352-b08
+            </text>
+            <text
+              style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: #333333;"
+              text-anchor="middle"
+              transform="translate(0,0)"
+              x="0"
+            >
+              jdk8u362-b09
+            </text>
+            <text
+              style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: #333333;"
+              text-anchor="middle"
+              transform="translate(0,0)"
+              x="0"
+            >
+              jdk8u372-b07
+            </text>
+            <text
+              style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: #333333;"
+              text-anchor="middle"
+              transform="translate(0,0)"
+              x="0"
+            >
+              jdk8u382-b05
+            </text>
+          </g>
+          <g
+            class="highcharts-axis-labels highcharts-yaxis-labels"
+            data-z-index="7"
+          >
+            <text
+              style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: #333333;"
+              text-anchor="end"
+              transform="translate(0,0)"
+              x="0"
+            >
+              0
+            </text>
+            <text
+              style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: #333333;"
+              text-anchor="end"
+              transform="translate(0,0)"
+              x="0"
+            >
+              2M
+            </text>
+            <text
+              style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: #333333;"
+              text-anchor="end"
+              transform="translate(0,0)"
+              x="0"
+            >
+              4M
+            </text>
+            <text
+              style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: #333333;"
+              text-anchor="end"
+              transform="translate(0,0)"
+              x="0"
+            >
+              6M
+            </text>
+            <text
+              style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: #333333;"
+              text-anchor="end"
+              transform="translate(0,0)"
+              x="0"
+            >
+              8M
+            </text>
+          </g>
+          <text
+            class="highcharts-credits"
+            data-z-index="8"
+            style="cursor: pointer; color: rgb(153, 153, 153); font-size: 0.6em; fill: #999999;"
+            text-anchor="end"
+            x="590"
+            y="395"
+          >
+            Highcharts.com
+          </text>
+        </svg>
+        <span
+          class="highcharts-subtitle"
+          data-z-index="4"
+          style="position: absolute; font-family: Helvetica, Arial, sans-serif; font-size: 0.8em; white-space: nowrap; margin-left: 0px; margin-top: 0px; left: 300px; top: 8px; color: rgb(102, 102, 102);"
+        >
+          Data is from: 
+          <a
+            href="https://api.adoptium.net/v3/stats/downloads/total"
+            target="_blank"
+          >
+            api.adoptium.net/v3/stats/downloads/total
+          </a>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
