@@ -1,0 +1,41 @@
+{
+    "compilerOptions": {
+        "outDir": "build/dist",
+        "module": "ESNext",
+        "target": "ES6",
+        "lib": [
+            "ES6",
+            "ES7",
+            "DOM"
+        ],
+        "sourceMap": true,
+        "allowJs": true,
+        "jsx": "preserve",
+        "moduleResolution": "node",
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitReturns": true,
+        "strict": true,
+        "strictFunctionTypes": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "noUnusedLocals": true,
+        "pretty": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "downlevelIteration": true,
+        "resolveJsonModule": true,
+        "plugins": [
+            {
+                "name": "typescript-plugin-css-modules",
+                "options": {
+                    "namedExports": false,
+                    "classnameTransform": "camelCaseOnly"
+                }
+            }
+        ]
+    },
+    "include": [
+        "**/*.{ts,tsx,mdx}",
+        "vitest.config.ts",
+        "vitest-setup.ts"
+    ]
+}
