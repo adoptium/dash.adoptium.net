@@ -1,0 +1,155 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NavigationMenu component > renders correctly /download path 1`] = `
+<div>
+  <ul
+    class="ant-menu ant-menu-root ant-menu-inline ant-menu-light css-dev-only-do-not-override-1vr7spz"
+    data-menu-list="true"
+    role="menu"
+    style="height: 100%; border-right: 0; margin-top: 20px;"
+    tabindex="0"
+  >
+    <li
+      class="ant-menu-item"
+      data-menu-id="rc-menu-uuid-test-1"
+      role="menuitem"
+      style="padding-left: 24px;"
+      tabindex="-1"
+    >
+      <span
+        aria-label="line-chart"
+        class="anticon anticon-line-chart ant-menu-item-icon"
+        role="img"
+      >
+        <svg
+          aria-hidden="true"
+          data-icon="line-chart"
+          fill="currentColor"
+          focusable="false"
+          height="1em"
+          viewBox="64 64 896 896"
+          width="1em"
+        >
+          <path
+            d="M888 792H200V168c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v688c0 4.4 3.6 8 8 8h752c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM305.8 637.7c3.1 3.1 8.1 3.1 11.3 0l138.3-137.6L583 628.5c3.1 3.1 8.2 3.1 11.3 0l275.4-275.3c3.1-3.1 3.1-8.2 0-11.3l-39.6-39.6a8.03 8.03 0 00-11.3 0l-230 229.9L461.4 404a8.03 8.03 0 00-11.3 0L266.3 586.7a8.03 8.03 0 000 11.3l39.5 39.7z"
+          />
+        </svg>
+      </span>
+      <span
+        class="ant-menu-title-content"
+      />
+    </li>
+    <li
+      class="ant-menu-item"
+      data-menu-id="rc-menu-uuid-test-2"
+      role="menuitem"
+      style="padding-left: 24px;"
+      tabindex="-1"
+    >
+      <span
+        aria-label="line-chart"
+        class="anticon anticon-line-chart ant-menu-item-icon"
+        role="img"
+      >
+        <svg
+          aria-hidden="true"
+          data-icon="line-chart"
+          fill="currentColor"
+          focusable="false"
+          height="1em"
+          viewBox="64 64 896 896"
+          width="1em"
+        >
+          <path
+            d="M888 792H200V168c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v688c0 4.4 3.6 8 8 8h752c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM305.8 637.7c3.1 3.1 8.1 3.1 11.3 0l138.3-137.6L583 628.5c3.1 3.1 8.2 3.1 11.3 0l275.4-275.3c3.1-3.1 3.1-8.2 0-11.3l-39.6-39.6a8.03 8.03 0 00-11.3 0l-230 229.9L461.4 404a8.03 8.03 0 00-11.3 0L266.3 586.7a8.03 8.03 0 000 11.3l39.5 39.7z"
+          />
+        </svg>
+      </span>
+      <span
+        class="ant-menu-title-content"
+      />
+    </li>
+  </ul>
+  <div
+    aria-hidden="true"
+    style="display: none;"
+  />
+</div>
+`;
+
+exports[`NavigationMenu component > renders correctly /trends path 1`] = `
+<div>
+  <ul
+    class="ant-menu ant-menu-root ant-menu-inline ant-menu-light css-dev-only-do-not-override-1vr7spz"
+    data-menu-list="true"
+    role="menu"
+    style="height: 100%; border-right: 0; margin-top: 20px;"
+    tabindex="0"
+  >
+    <li
+      class="ant-menu-item"
+      data-menu-id="rc-menu-uuid-test-1"
+      role="menuitem"
+      style="padding-left: 24px;"
+      tabindex="-1"
+    >
+      <span
+        aria-label="line-chart"
+        class="anticon anticon-line-chart ant-menu-item-icon"
+        role="img"
+      >
+        <svg
+          aria-hidden="true"
+          data-icon="line-chart"
+          fill="currentColor"
+          focusable="false"
+          height="1em"
+          viewBox="64 64 896 896"
+          width="1em"
+        >
+          <path
+            d="M888 792H200V168c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v688c0 4.4 3.6 8 8 8h752c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM305.8 637.7c3.1 3.1 8.1 3.1 11.3 0l138.3-137.6L583 628.5c3.1 3.1 8.2 3.1 11.3 0l275.4-275.3c3.1-3.1 3.1-8.2 0-11.3l-39.6-39.6a8.03 8.03 0 00-11.3 0l-230 229.9L461.4 404a8.03 8.03 0 00-11.3 0L266.3 586.7a8.03 8.03 0 000 11.3l39.5 39.7z"
+          />
+        </svg>
+      </span>
+      <span
+        class="ant-menu-title-content"
+      />
+    </li>
+    <li
+      class="ant-menu-item"
+      data-menu-id="rc-menu-uuid-test-2"
+      role="menuitem"
+      style="padding-left: 24px;"
+      tabindex="-1"
+    >
+      <span
+        aria-label="line-chart"
+        class="anticon anticon-line-chart ant-menu-item-icon"
+        role="img"
+      >
+        <svg
+          aria-hidden="true"
+          data-icon="line-chart"
+          fill="currentColor"
+          focusable="false"
+          height="1em"
+          viewBox="64 64 896 896"
+          width="1em"
+        >
+          <path
+            d="M888 792H200V168c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v688c0 4.4 3.6 8 8 8h752c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM305.8 637.7c3.1 3.1 8.1 3.1 11.3 0l138.3-137.6L583 628.5c3.1 3.1 8.2 3.1 11.3 0l275.4-275.3c3.1-3.1 3.1-8.2 0-11.3l-39.6-39.6a8.03 8.03 0 00-11.3 0l-230 229.9L461.4 404a8.03 8.03 0 00-11.3 0L266.3 586.7a8.03 8.03 0 000 11.3l39.5 39.7z"
+          />
+        </svg>
+      </span>
+      <span
+        class="ant-menu-title-content"
+      />
+    </li>
+  </ul>
+  <div
+    aria-hidden="true"
+    style="display: none;"
+  />
+</div>
+`;
