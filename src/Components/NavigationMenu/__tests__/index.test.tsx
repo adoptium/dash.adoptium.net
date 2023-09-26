@@ -4,8 +4,6 @@ import { vi, describe, expect, test } from 'vitest'
 import NavigationMenu from '../index';
 import { useLocation } from 'react-router-dom';
 
-vi.mock('react-router-dom');
-
 describe('NavigationMenu component', () => {
     test('renders correctly /download path', async() => {
         vi.mocked(useLocation).mockReturnValue({path: '/download'});

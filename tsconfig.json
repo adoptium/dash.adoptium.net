@@ -35,7 +35,7 @@
     },
     "include": [
         "**/*.{ts,tsx,mdx}",
-        "vitest.config.ts",
-        "vitest-setup.ts"
+        "vitest-setup.ts",
+        "vitest.config.ts"
     ]
 }
