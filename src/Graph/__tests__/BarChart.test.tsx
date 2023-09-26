@@ -1,8 +1,8 @@
 import React from 'react';
+import '@testing-library/jest-dom';
 import { act, render } from '@testing-library/react';
-import { afterAll, beforeAll, describe, expect, test } from 'vitest'
+import { describe, expect, test } from 'vitest'
 import BarChart from '../BarChart'
-import Highcharts from 'highcharts'
 
 // NOTE: Use a delay to avoid diff with rendering animation
 // https://github.com/highcharts/highcharts/issues/14328
@@ -24,20 +24,12 @@ const mock_data = {
   "jdk8u382-b05": 1929984
 }
 
-beforeAll(async () => {
-  Highcharts.useSerialIds(true);
-})
-
-afterAll(async () => {
-  Highcharts.useSerialIds(false);
-})
-
 describe('BarChart component', () => {
   test('renders correctly', async () => {
-    let container;
+    let getByText;
 
     await act(async () => {
-      ({ container } = render(
+      ({ getByText } = render(
         <BarChart
           data={mock_data}
           name={'Downloads'}
@@ -46,6 +38,10 @@ describe('BarChart component', () => {
       setTimeout(() => { }, delay)
     });
 
-    expect(container).toMatchSnapshot();
+    expect(getByText('jdk8u302-b08')).toBeInTheDocument();
+    expect(getByText('3 238 608')).toBeInTheDocument();
+
+    expect(getByText('jdk8u382-b05')).toBeInTheDocument();
+    expect(getByText('1 929 984')).toBeInTheDocument();
   });
 });

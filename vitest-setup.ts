@@ -1,4 +1,7 @@
 import { vi } from 'vitest'
+import Highcharts from 'highcharts'
+
+Highcharts.useSerialIds(true);
 
 // mock router for 'useParams'
 vi.mock('react-router-dom');
