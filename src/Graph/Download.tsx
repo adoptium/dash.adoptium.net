@@ -75,7 +75,6 @@ export default class DownloadTotal extends Component<{}, DownloadTotalState> {
           {/* <PieChart data={pieChartData} name="jdk8u222-b10 Downloads" /> */}
         </div>
         <ColumnDrilldown data={data.github_downloads} name='Github Downloads' />
-        <BarChart data={data.docker_pulls} name='Docker Pulls' />
       </>
     )
   }
