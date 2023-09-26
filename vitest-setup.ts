@@ -1,32 +1,11 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import fs from 'fs/promises';
+import { vi } from 'vitest'
 
-export default defineConfig({
-  esbuild: {
-    loader: "jsx",
-    include: /src\/.*\.jsx?$/,
-    exclude: [],
-  },
-  optimizeDeps: {
-    esbuildOptions: {
-      plugins: [
-        {
-          name: "load-js-files-as-jsx",
-          setup(build) {
-            build.onLoad({ filter: /src\\.*\.js$/ }, async (args) => ({ // i modified the regex here
-              loader: "jsx",
-              contents: await fs.readFile(args.path, "utf8"),
-            }));
-          },
-        },
-      ],
-    },
-  },
-  plugins: [react()],
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: './vitest-setup.ts'
-  }
-})
+// mock router for 'useParams'
+vi.mock('react-router-dom');
+
+vi.mock('antd', async () => {
+  const antd = await vi.importActual('antd');
+  // @ts-expect-error importActualの型付けをしていない
+  antd.theme.defaultConfig.hashed = false;
+  return antd;
+});
