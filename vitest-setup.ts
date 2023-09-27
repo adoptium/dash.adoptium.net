@@ -1,7 +1,11 @@
 import { vi } from 'vitest'
 import Highcharts from 'highcharts'
+import AccessibilityModule from 'highcharts/modules/accessibility'
+
+AccessibilityModule(Highcharts)
 
 Highcharts.useSerialIds(true);
+Highcharts.AST.allowedAttributes.push('rel');
 
 // mock router for 'useParams'
 vi.mock('react-router-dom');
