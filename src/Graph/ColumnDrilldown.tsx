@@ -4,6 +4,7 @@ import HighchartsReact from 'highcharts-react-official';
 import drilldown from 'highcharts/modules/drilldown';
 import './Graph.css';
 import { api } from '../api';
+import {toSecondAndThirdLevels} from '../utils'
 
 drilldown(Highcharts);
 
@@ -60,7 +61,8 @@ export default class ColumnDrilldown extends Component<ColumnDrilldownProps, Col
     const { data } = this.props;
     if (data) {
       const drilldownSeries: DrilldownItem[] = [];
-      const secondLevelDrilldownSeries: DrilldownSeries[] = [];
+      const archLevelDrilldownSeries: DrilldownSeries[] = [];
+
       const seriesDataPromises: Promise<DrilldownData | null>[] = Object.keys(data).map(async key => {
         const apiData = await api.downloads(key);
         if (!apiData) return null;
@@ -74,21 +76,37 @@ export default class ColumnDrilldown extends Component<ColumnDrilldownProps, Col
               drilldown: secondLevelApiKey,
             };
           });
-          secondLevelDrilldownSeries.push({
+
+          const r = toSecondAndThirdLevels(secondLevelDrilldownSeriesData);
+          archLevelDrilldownSeries.push({
             name: apiDataKey,
             id: apiDataKey,
-            data: secondLevelDrilldownSeriesData,
+            data: Object.keys(r.arch).map(oneArch => {
+              return {
+                name: oneArch,
+                y: 2000,
+                drilldown: `${apiDataKey}-${oneArch}`
+              }
+            })
           });
-      
+
+          Object.keys(r.arch).forEach(oneArch => {
+            archLevelDrilldownSeries.push({
+              name: `${apiDataKey}-${oneArch}`,
+              id: `${apiDataKey}-${oneArch}`,
+              data: r.arch[oneArch].data
+            });
+          });
+
           return {
             name: apiDataKey,
             y: apiData[apiDataKey],
             drilldown: apiDataKey,
           };
         });
-      
+
+        // this get all primary level keys: JDK21, JDK20...
         const drilldownSeriesData = await Promise.all(drilldownDataPromises);
-        
         drilldownSeries.push({
           name: `JDK${key}`,
           id: key,
@@ -103,13 +121,16 @@ export default class ColumnDrilldown extends Component<ColumnDrilldownProps, Col
       });
       
       const seriesData = (await Promise.all(seriesDataPromises)).filter(Boolean) as DrilldownData[];
-      
-      drilldownSeries.push(...secondLevelDrilldownSeries)
+
+      console.log(archLevelDrilldownSeries)
+
+      drilldownSeries.push(...archLevelDrilldownSeries)
       this.setState({
         seriesData,
-        drilldownSeries: [...drilldownSeries, ...secondLevelDrilldownSeries],
+        drilldownSeries: [...drilldownSeries, ...archLevelDrilldownSeries],
       });
     }
+
   }
 
   render() {
@@ -129,7 +150,10 @@ export default class ColumnDrilldown extends Component<ColumnDrilldownProps, Col
         useHTML: true
       },
       xAxis: {
-        type: 'category'
+        type: 'category',
+        labels: {
+          autoRotation: [-10, -20, -30, -45]
+        }
       },
       yAxis: {
         title: {
