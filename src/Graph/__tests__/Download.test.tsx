@@ -39,10 +39,10 @@ api.downloads = vi.fn().mockImplementation(() => {
 describe('Download component', () => {
     test('renders correctly', async () => {
         let getByText;
-        let queryAllByLabelText;
+        let queryAllByText;
 
         await act(async () => {
-            ({ getByText, queryAllByLabelText } = render(
+            ({ getByText, queryAllByText } = render(
                 <Download />
             ));
             setTimeout(() => { }, delay)
@@ -51,16 +51,17 @@ describe('Download component', () => {
         expect(getByText('Adoptium Download Stats')).toBeInTheDocument();
         expect(getByText('233 144 070')).toBeInTheDocument();
 
-        expect(queryAllByLabelText('Total Downloads').length).toBe(2);
+        expect(queryAllByText('Total Downloads', {selector: 'text'}).length).toBe(3);
         expect(getByText('72 333 402')).toBeInTheDocument();
         expect(getByText('160 810 668')).toBeInTheDocument();
         expect(getByText('233 144 070')).toBeInTheDocument();
 
-        expect(queryAllByLabelText('Github Downloads').length).toBe(1);
-
+        expect(queryAllByText('Github Downloads', {selector: 'text'}).length).toBe(3);
         expect(getByText('39 821 217')).toBeInTheDocument();
         expect(getByText('48 300 842')).toBeInTheDocument();
         expect(getByText('45 342 098')).toBeInTheDocument();
         expect(getByText('594 778')).toBeInTheDocument();
+
+        expect(queryAllByText('JDK Versions', {selector: 'text'}).length).toBe(1);
     });
 });

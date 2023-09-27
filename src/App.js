@@ -11,6 +11,7 @@ import ErrorBoundary from './ErrorBoundary'
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 
 AccessibilityModule(Highcharts)
+Highcharts.AST.allowedAttributes.push('rel')
 
 const { Header, Content, Sider } = Layout
 
