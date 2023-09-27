@@ -84,7 +84,7 @@ export default class ColumnDrilldown extends Component<ColumnDrilldownProps, Col
             data: Object.keys(r.arch).map(oneArch => {
               return {
                 name: oneArch,
-                y: 2000,
+                y: r.arch[oneArch].data.reduce((a, b) => a + b.y || 0, 0),
                 drilldown: `${apiDataKey}-${oneArch}`
               }
             })
