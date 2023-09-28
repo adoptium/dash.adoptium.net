@@ -31,43 +31,7 @@ export const formatNum = number => {
   return number.toLocaleString(navigator.language)
 }
 
-export const secondLevelDrilldownSeriesDataToThirdLevel = (data) => {
-  const mArch = new Map();
-  const mOs = new Map();
-
-  mArch.set('sources', []);
-  mOs.set('sources', []);
-
-  data.forEach((slddsd) => {
-    const tokens = slddsd.name.split('_');
-    // console.info("what = " + tokens[0]);
-    // console.info("arch = " + tokens[1]);
-    // console.info("os = " + tokens[2]);
-    // console.info("hotspot = " + tokens[3]);
-    // console.info("version = " + tokens[4]);
-
-    if(tokens.length === 3 && tokens[0].endsWith("sources")) {
-      mArch.get('sources').push(slddsd);
-      mOs.get('sources').push(slddsd);
-    } else if(tokens.length >= 5) {
-      if(!mArch.has(tokens[1])) mArch.set(tokens[1], []);
-      mArch.get(tokens[1]).push(slddsd);
-
-      if(!mOs.has(tokens[2])) mOs.set(tokens[2], []);
-      mOs.get(tokens[2]).push(slddsd);
-    }
-  });
-
-  if(mArch.get('sources').length === 0) mArch.delete('sources');
-  if(mOs.get('sources').length === 0) mOs.delete('sources');
-
-  return {
-    arch: Object.fromEntries(mArch),
-    os: Object.fromEntries(mOs)
-  };
-}
-
-export const toSecondAndThirdLevels = (data) => {
+export const splitDrilldownSeriesByArchAndOs = (data) => {
   const mArch = new Map();
   const mOs = new Map();
 
@@ -82,11 +46,14 @@ export const toSecondAndThirdLevels = (data) => {
     // console.info("hotspot = " + tokens[3]);
     // console.info("version = " + tokens[4]);
 
+    slddsd['name'] = getFormattedName(tokens);
+
     if(tokens.length === 3 && tokens[0].endsWith("sources")) {
       mArch.get('sources').data.push(slddsd);
       mOs.get('sources').data.push(slddsd);
     } else if(tokens.length >= 5) {
       if(!mArch.has(tokens[1])) mArch.set(tokens[1], {name: tokens[1], id: tokens[1], data: []});
+
       mArch.get(tokens[1]).data.push(slddsd);
 
       if(!mOs.has(tokens[2])) mOs.set(tokens[2], {name: tokens[1], id: tokens[1], data: []});
@@ -101,4 +68,12 @@ export const toSecondAndThirdLevels = (data) => {
     arch: Object.fromEntries(mArch),
     os: Object.fromEntries(mOs)
   };
+}
+
+const getFormattedName = (tokens) => {
+  if(tokens.length === 3 && tokens[0].endsWith("sources")) return "sources";
+  else if(tokens.length >= 5) {
+    const afterCarret = tokens[0].slice(tokens[0].indexOf('-') + 1);
+    return `${afterCarret} ${tokens[2]}`}
+  else return tokens.join('_')    
 }
