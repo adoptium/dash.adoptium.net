@@ -4,7 +4,7 @@ import HighchartsReact from 'highcharts-react-official';
 import drilldown from 'highcharts/modules/drilldown';
 import './Graph.css';
 import { api } from '../api';
-import {toSecondAndThirdLevels} from '../utils'
+import {splitDrilldownSeriesByArchAndOs} from '../utils'
 
 drilldown(Highcharts);
 
@@ -77,7 +77,7 @@ export default class ColumnDrilldown extends Component<ColumnDrilldownProps, Col
             };
           });
 
-          const r = toSecondAndThirdLevels(secondLevelDrilldownSeriesData);
+          const r = splitDrilldownSeriesByArchAndOs(secondLevelDrilldownSeriesData);
           archLevelDrilldownSeries.push({
             name: apiDataKey,
             id: apiDataKey,
@@ -121,8 +121,6 @@ export default class ColumnDrilldown extends Component<ColumnDrilldownProps, Col
       });
       
       const seriesData = (await Promise.all(seriesDataPromises)).filter(Boolean) as DrilldownData[];
-
-      console.log(archLevelDrilldownSeries)
 
       drilldownSeries.push(...archLevelDrilldownSeries)
       this.setState({
