@@ -81,7 +81,7 @@ export default class ColumnDrilldown extends Component<ColumnDrilldownProps, Col
           archLevelDrilldownSeries.push({
             name: apiDataKey,
             id: apiDataKey,
-            data: Object.keys(r.arch).map(oneArch => {
+            data: Object.keys(r.arch).sort((a, b) => a.localeCompare(b)).map(oneArch => {
               return {
                 name: oneArch,
                 y: r.arch[oneArch].data.reduce((a, b) => a + b.y || 0, 0),
@@ -94,7 +94,7 @@ export default class ColumnDrilldown extends Component<ColumnDrilldownProps, Col
             archLevelDrilldownSeries.push({
               name: `${apiDataKey}-${oneArch}`,
               id: `${apiDataKey}-${oneArch}`,
-              data: r.arch[oneArch].data
+              data: r.arch[oneArch].data.sort((a, b) => a.name.localeCompare(b.name))
             });
           });
 
