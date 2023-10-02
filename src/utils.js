@@ -66,7 +66,7 @@ const getArtifactAndFormattedName = (entry) => {
     return { artifact: 'sources', name: 'sources' }
   } else if (tokens.length >= 5) {
     const artifact = tokens[0].slice(tokens[0].indexOf('-') + 1)
-    const name = entry.name.endsWith('.msi')
+    const name = (entry.name.endsWith('.msi') || entry.name.endsWith('.pkg'))
       ? `${capitalizeFirst(tokens[2])} (${capitalizeFirst(tokens[1])} / installer)`
       : `${capitalizeFirst(tokens[2])} (${capitalizeFirst(tokens[1])})`
 
