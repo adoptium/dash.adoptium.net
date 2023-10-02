@@ -4,7 +4,7 @@ import HighchartsReact from 'highcharts-react-official';
 import drilldown from 'highcharts/modules/drilldown';
 import './Graph.css';
 import { api } from '../api';
-import {splitDrilldownSeriesByArchAndOs} from '../utils'
+import {splitDrilldownSeriesByArtifacts} from '../utils'
 
 drilldown(Highcharts);
 
@@ -77,24 +77,24 @@ export default class ColumnDrilldown extends Component<ColumnDrilldownProps, Col
             };
           });
 
-          const r = splitDrilldownSeriesByArchAndOs(secondLevelDrilldownSeriesData);
+          const r = splitDrilldownSeriesByArtifacts(secondLevelDrilldownSeriesData);
           archLevelDrilldownSeries.push({
             name: apiDataKey,
             id: apiDataKey,
-            data: Object.keys(r.arch).sort((a, b) => a.localeCompare(b)).map(oneArch => {
+            data: Object.keys(r.artifacts).sort((a, b) => a.localeCompare(b)).map(val => {
               return {
-                name: oneArch,
-                y: r.arch[oneArch].data.reduce((a, b) => a + b.y || 0, 0),
-                drilldown: `${apiDataKey}-${oneArch}`
+                name: val,
+                y: r.artifacts[val].data.reduce((a, b) => a + b.y || 0, 0),
+                drilldown: `${apiDataKey}-${val}`
               }
             })
           });
 
-          Object.keys(r.arch).forEach(oneArch => {
+          Object.keys(r.artifacts).forEach(val => {
             archLevelDrilldownSeries.push({
-              name: `${apiDataKey}-${oneArch}`,
-              id: `${apiDataKey}-${oneArch}`,
-              data: r.arch[oneArch].data.sort((a, b) => a.name.localeCompare(b.name))
+              name: `${apiDataKey}-${val}`,
+              id: `${apiDataKey}-${val}`,
+              data: r.artifacts[val].data.sort((a, b) => a.name.localeCompare(b.name))
             });
           });
 
