@@ -4,6 +4,7 @@ import HighchartsReact from 'highcharts-react-official';
 import drilldown from 'highcharts/modules/drilldown';
 import './Graph.css';
 import { api } from '../api';
+import {splitDrilldownSeriesByArtifacts} from '../utils'
 
 drilldown(Highcharts);
 
@@ -60,7 +61,8 @@ export default class ColumnDrilldown extends Component<ColumnDrilldownProps, Col
     const { data } = this.props;
     if (data) {
       const drilldownSeries: DrilldownItem[] = [];
-      const secondLevelDrilldownSeries: DrilldownSeries[] = [];
+      const archLevelDrilldownSeries: DrilldownSeries[] = [];
+
       const seriesDataPromises: Promise<DrilldownData | null>[] = Object.keys(data).map(async key => {
         const apiData = await api.downloads(key);
         if (!apiData) return null;
@@ -74,21 +76,37 @@ export default class ColumnDrilldown extends Component<ColumnDrilldownProps, Col
               drilldown: secondLevelApiKey,
             };
           });
-          secondLevelDrilldownSeries.push({
+
+          const r = splitDrilldownSeriesByArtifacts(secondLevelDrilldownSeriesData);
+          archLevelDrilldownSeries.push({
             name: apiDataKey,
             id: apiDataKey,
-            data: secondLevelDrilldownSeriesData,
+            data: Object.keys(r.artifacts).sort((a, b) => a.localeCompare(b)).map(val => {
+              return {
+                name: val,
+                y: r.artifacts[val].data.reduce((a, b) => a + b.y || 0, 0),
+                drilldown: `${apiDataKey}-${val}`
+              }
+            })
           });
-      
+
+          Object.keys(r.artifacts).forEach(val => {
+            archLevelDrilldownSeries.push({
+              name: `${apiDataKey}-${val}`,
+              id: `${apiDataKey}-${val}`,
+              data: r.artifacts[val].data.sort((a, b) => a.name.localeCompare(b.name))
+            });
+          });
+
           return {
             name: apiDataKey,
             y: apiData[apiDataKey],
             drilldown: apiDataKey,
           };
         });
-      
+
+        // this get all primary level keys: JDK21, JDK20...
         const drilldownSeriesData = await Promise.all(drilldownDataPromises);
-        
         drilldownSeries.push({
           name: `JDK${key}`,
           id: key,
@@ -103,13 +121,14 @@ export default class ColumnDrilldown extends Component<ColumnDrilldownProps, Col
       });
       
       const seriesData = (await Promise.all(seriesDataPromises)).filter(Boolean) as DrilldownData[];
-      
-      drilldownSeries.push(...secondLevelDrilldownSeries)
+
+      drilldownSeries.push(...archLevelDrilldownSeries)
       this.setState({
         seriesData,
-        drilldownSeries: [...drilldownSeries, ...secondLevelDrilldownSeries],
+        drilldownSeries: [...drilldownSeries, ...archLevelDrilldownSeries],
       });
     }
+
   }
 
   render() {
@@ -129,7 +148,10 @@ export default class ColumnDrilldown extends Component<ColumnDrilldownProps, Col
         useHTML: true
       },
       xAxis: {
-        type: 'category'
+        type: 'category',
+        labels: {
+          autoRotation: [-10, -20, -30, -45]
+        }
       },
       yAxis: {
         title: {
