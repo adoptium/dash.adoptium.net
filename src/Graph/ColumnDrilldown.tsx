@@ -137,6 +137,9 @@ export default class ColumnDrilldown extends Component<ColumnDrilldownProps, Col
 
     const { name } = this.props;
     const options = {
+      colors: [
+        "#2caffe"
+      ],
       chart: {
         type: 'column'
       },
