@@ -17,7 +17,7 @@
         "@types/lodash": "^4.14.199",
         "@types/react": "^18.2.28",
         "@vitest/coverage-v8": "^0.34.6",
-        "parcel": "^2.9.3",
+        "parcel": "^2.10.0",
         "process": "^0.11.10",
         "typescript": "^5.2.2"
     },
