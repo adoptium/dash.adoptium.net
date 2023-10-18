@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router'
+import { Routes, Route } from 'react-router'
 import { ConfigProvider, Layout, Menu, Button } from 'antd'
 import Highcharts from 'highcharts'
 import AccessibilityModule from 'highcharts/modules/accessibility'
@@ -55,9 +55,11 @@ export default class App extends Component {
               <ErrorBoundary>
                 <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
                   <Button onClick={this.handleToggle} type='link' shape='circle' icon={this.state.collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />} />
-                  <Route exact path='/' component={Download} />
-                  <Route path='/download' component={Download} />
-                  <Route path='/trends' component={Trends} />
+                  <Routes>
+                    <Route exact path='/' element={<Download />} />
+                    <Route path='/download' element={<Download />} />
+                    <Route path='/trends' element={<Trends />} />
+                  </Routes>
                 </Content>
               </ErrorBoundary>
             </Layout>
