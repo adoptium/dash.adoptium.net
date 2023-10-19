@@ -208,7 +208,6 @@ export default class ColumnDrilldown extends Component<ColumnDrilldownProps, Col
           highcharts={Highcharts}
           options={options}
         />
-        <p>*Includes only results with Type of release: General Availability(ga)</p>
       </div>
     );
   }
