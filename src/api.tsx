@@ -5,5 +5,7 @@ export const api = {
   // eslint-disable-next-line camelcase
   tracking: ({ source, feature_version, jvm_impl, days, ...rest }) => get('https://api.adoptium.net/v3/stats/downloads/tracking/', { source, feature_version, jvm_impl, days, ...rest }),
   // eslint-disable-next-line camelcase
-  monthly: ({ source, feature_version, jvm_impl, ...rest }) => get('https://api.adoptium.net/v3/stats/downloads/monthly/', { source, feature_version, jvm_impl, ...rest })
+  monthly: ({ source, feature_version, jvm_impl, ...rest }) => get('https://api.adoptium.net/v3/stats/downloads/monthly/', { source, feature_version, jvm_impl, ...rest }),
+  // eslint-disable-next-line camelcase
+  availableReleases: () => get('https://api.adoptium.net/v3/info/available_releases')
 }
