@@ -74,7 +74,7 @@ export default class DownloadTotal extends Component<{}, DownloadTotalState> {
           <PieChart data={totalPieChartData} name='Total Downloads' showInLegend dataLabels colors={['rgb(108,109,227)', 'rgb(254,174,98)']} />
           {/* <PieChart data={pieChartData} name="jdk8u222-b10 Downloads" /> */}
         </div>
-        <ColumnDrilldown name='Github Downloads' />
+        <ColumnDrilldown name='Github Release Downloads' />
       </>
     )
   }

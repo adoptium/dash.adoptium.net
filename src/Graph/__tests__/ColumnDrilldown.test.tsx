@@ -63,7 +63,7 @@ describe('ColumnDrilldown component', () => {
 
     await act(async () => {
       ({ getByText } = render(
-        <ColumnDrilldown name='Github Downloads' />
+        <ColumnDrilldown name='Github Release Downloads' />
       ));
       setTimeout(() => { }, delay)
     });

@@ -56,7 +56,8 @@ describe('Download component', () => {
         expect(getByText('160 810 668')).toBeInTheDocument();
         expect(getByText('233 144 070')).toBeInTheDocument();
 
-        expect(queryAllByText('Github Downloads', {selector: 'text'}).length).toBe(3);
+        expect(queryAllByText('Github Downloads', {selector: 'text'}).length).toBe(2);
+        expect(queryAllByText('Github Release Downloads', {selector: 'text'}).length).toBe(1);
         expect(queryAllByText('JDK Versions', {selector: 'text'}).length).toBe(1);
     });
 });
