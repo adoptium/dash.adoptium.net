@@ -11,18 +11,16 @@ import { api } from '../../api';
 const delay = 2000;
 
 const mock_data = {
-  "date": "2023-10-09T07:10:48Z",
-  "docker_pulls": {
-      "eclipse-temurin": 74596680
-  },
-  "github_downloads": {
-      "8": 40769834
-  },
-  "total_downloads": {
-      "docker_pulls": 74596680,
-      "github_downloads": 165154324,
-      "total": 239751004
-  }
+  "available_lts_releases": [
+      8
+  ],
+  "available_releases": [
+      8
+  ],
+  "most_recent_feature_release": 21,
+  "most_recent_feature_version": 22,
+  "most_recent_lts": 21,
+  "tip_version": 22
 }
 
 const mock_data_api_8 = {
@@ -51,8 +49,12 @@ const mock_data_api_b08 = {
 
 describe('ColumnDrilldown component', () => {
   test('renders correctly', async () => {
+    api.availableReleases = vi.fn().mockImplementation(() => {
+      return mock_data
+    });
+
     api.downloads = vi.fn().mockImplementation((arg) => {
-      if(arg === '8') return mock_data_api_8;
+      if(arg === 8) return mock_data_api_8;
       else if (arg === '8/jdk8u302-b08') return mock_data_api_b08;
       return undefined
     });
@@ -61,7 +63,7 @@ describe('ColumnDrilldown component', () => {
 
     await act(async () => {
       ({ getByText } = render(
-        <ColumnDrilldown data={mock_data.github_downloads} name='Github Downloads' />
+        <ColumnDrilldown name='Github Release Downloads' />
       ));
       setTimeout(() => { }, delay)
     });

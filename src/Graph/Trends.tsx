@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { api } from '../api';
-import { get } from '../utils';
 import LineChart from './LineChart';
 import BarChart from './BarChart';
 import moment from 'moment';
@@ -95,7 +94,7 @@ export default class Trends extends Component<{}, State> {
     await this.updateData(2, this.state.args2);
     await this.updateMonthlyData(this.state.monthlyArgs);
     this.setState({
-      versions: (await get('https://api.adoptium.net/v3/info/available_releases')).available_releases,
+      versions: (await api.availableReleases()).available_releases,
     });
   }
 

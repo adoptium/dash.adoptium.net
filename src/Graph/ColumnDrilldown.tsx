@@ -9,7 +9,6 @@ import {splitDrilldownSeriesByArtifacts} from '../utils'
 drilldown(Highcharts);
 
 interface ColumnDrilldownProps {
-  data?: { [key: string]: number };
   name: string;
 }
 
@@ -58,17 +57,24 @@ export default class ColumnDrilldown extends Component<ColumnDrilldownProps, Col
   }
 
   async updateData() {
-    const { data } = this.props;
-    if (data) {
+    const availableReleases = await api.availableReleases();
+
+    if (availableReleases.available_releases) {
       const drilldownSeries: DrilldownItem[] = [];
       const archLevelDrilldownSeries: DrilldownSeries[] = [];
 
-      const seriesDataPromises: Promise<DrilldownData | null>[] = Object.keys(data).map(async key => {
+      // this step loops over all versions (e.g. "8":41425474,"11":50446738...)
+      const seriesDataPromises: Promise<DrilldownData | null>[] = availableReleases.available_releases.map(async key => {
+        // then call download data of key (e.g. https://api.adoptium.net/v3/stats/downloads/total/21)
         const apiData = await api.downloads(key);
         if (!apiData) return null;
-      
+
+        // loop over all elements
         const drilldownDataPromises: Promise<DrilldownData>[] = Object.keys(apiData).map(async apiDataKey => {
+          // get data (e.g. https://api.adoptium.net/v3/stats/downloads/total/21/jdk-21+35)
           const secondLevelApiData = await api.downloads(`${key}/${apiDataKey}`);
+
+          // this returns data of each element (e.g. OpenJDK20U-jdk_x64_windows_hotspot_20.0.2_9.zip)
           const secondLevelDrilldownSeriesData: DrilldownData[] = Object.keys(secondLevelApiData).map(secondLevelApiKey => {
             return {
               name: secondLevelApiKey,
@@ -77,6 +83,7 @@ export default class ColumnDrilldown extends Component<ColumnDrilldownProps, Col
             };
           });
 
+          // this step will allocate element by level
           const r = splitDrilldownSeriesByArtifacts(secondLevelDrilldownSeriesData);
           archLevelDrilldownSeries.push({
             name: apiDataKey,
@@ -84,6 +91,7 @@ export default class ColumnDrilldown extends Component<ColumnDrilldownProps, Col
             data: Object.keys(r.artifacts).sort((a, b) => a.localeCompare(b)).map(val => {
               return {
                 name: val,
+                // count number of value per level
                 y: r.artifacts[val].data.reduce((a, b) => a + b.y || 0, 0),
                 drilldown: `${apiDataKey}-${val}`
               }
@@ -94,19 +102,21 @@ export default class ColumnDrilldown extends Component<ColumnDrilldownProps, Col
             archLevelDrilldownSeries.push({
               name: `${apiDataKey}-${val}`,
               id: `${apiDataKey}-${val}`,
+              // count number of value per level
               data: r.artifacts[val].data.sort((a, b) => a.name.localeCompare(b.name))
             });
           });
 
           return {
             name: apiDataKey,
-            y: apiData[apiDataKey],
+            y: secondLevelDrilldownSeriesData.reduce((a, b) => a + b.y || 0, 0),
             drilldown: apiDataKey,
           };
         });
 
         // this get all primary level keys: JDK21, JDK20...
         const drilldownSeriesData = await Promise.all(drilldownDataPromises);
+
         drilldownSeries.push({
           name: `JDK${key}`,
           id: key,
@@ -115,7 +125,7 @@ export default class ColumnDrilldown extends Component<ColumnDrilldownProps, Col
       
         return {
           name: `JDK${key}`,
-          y: data[key],
+          y: drilldownSeriesData.reduce((a, b) => a + b.y || 0, 0),
           drilldown: key,
         };
       });
@@ -128,7 +138,6 @@ export default class ColumnDrilldown extends Component<ColumnDrilldownProps, Col
         drilldownSeries: [...drilldownSeries, ...archLevelDrilldownSeries],
       });
     }
-
   }
 
   render() {
