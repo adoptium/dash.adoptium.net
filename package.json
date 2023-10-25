@@ -4,7 +4,7 @@
     "license": "Apache License Version 2.0",
     "scripts": {
         "start": "parcel index.html -p 3000",
-        "build": "parcel build index.html --no-optimize",
+        "build": "parcel build index.html",
         "test": "vitest run",
         "coverage": "vitest run --coverage"
     },
