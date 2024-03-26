@@ -28,7 +28,7 @@
         "@testing-library/react": "^14.2.2",
         "@vitejs/plugin-react": "^4.2.1",
         "antd": "^5.15.3",
-        "express": "^4.19.1",
+        "express": "^4.19.2",
         "highcharts": "^11.4.0",
         "highcharts-react-official": "^3.2.1",
         "lodash": "^4.17.21",
