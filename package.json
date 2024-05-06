@@ -24,7 +24,7 @@
     "dependencies": {
         "@ant-design/icons": "^5.3.6",
         "@babel/preset-env": "^7.24.5",
-        "@testing-library/jest-dom": "^6.4.2",
+        "@testing-library/jest-dom": "^6.4.5",
         "@testing-library/react": "^14.3.0",
         "@vitejs/plugin-react": "^4.2.1",
         "antd": "^5.17.0",
