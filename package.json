@@ -27,7 +27,7 @@
         "@testing-library/jest-dom": "^6.4.5",
         "@testing-library/react": "^14.3.0",
         "@vitejs/plugin-react": "^4.2.1",
-        "antd": "^5.17.0",
+        "antd": "^5.17.2",
         "express": "^4.19.2",
         "highcharts": "^11.4.1",
         "highcharts-react-official": "^3.2.1",
