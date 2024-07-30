@@ -23,7 +23,7 @@
     },
     "dependencies": {
         "@ant-design/icons": "^5.4.0",
-        "@babel/preset-env": "^7.25.0",
+        "@babel/preset-env": "^7.25.2",
         "@testing-library/jest-dom": "^6.4.8",
         "@testing-library/react": "^16.0.0",
         "@vitejs/plugin-react": "^4.3.1",
