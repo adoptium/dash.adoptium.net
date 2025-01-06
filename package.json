@@ -14,7 +14,7 @@
         "@babel/preset-react": "^7.26.3",
         "@babel/preset-typescript": "^7.26.0",
         "@types/highcharts": "^7.0.0",
-        "@types/lodash": "^4.17.13",
+        "@types/lodash": "^4.17.14",
         "@types/react": "^19.0.2",
         "@vitest/coverage-v8": "^2.1.8",
         "parcel": "^2.12.0",
