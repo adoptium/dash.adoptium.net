@@ -1,12 +1,11 @@
 import React, { Component, createRef } from 'react';
-import Highcharts from 'highcharts';
+import * as Highcharts from 'highcharts';
+import 'highcharts/modules/drilldown';
 import HighchartsReact from 'highcharts-react-official';
-import drilldown from 'highcharts/modules/drilldown';
 import './Graph.css';
 import { api } from '../api';
 import {splitDrilldownSeriesByArtifacts} from '../utils'
 
-drilldown(Highcharts);
 
 interface ColumnDrilldownProps {
   name: string;

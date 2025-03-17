@@ -1,8 +1,6 @@
 import { vi } from 'vitest'
-import Highcharts from 'highcharts'
-import AccessibilityModule from 'highcharts/modules/accessibility'
-
-AccessibilityModule(Highcharts)
+import * as Highcharts from 'highcharts';
+import 'highcharts/modules/accessibility';
 
 Highcharts.useSerialIds(true);
 Highcharts.AST.allowedAttributes.push('rel');

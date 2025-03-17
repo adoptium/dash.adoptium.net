@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
 import { Routes, Route } from 'react-router'
 import { ConfigProvider, Layout, Menu, Button } from 'antd'
-import Highcharts from 'highcharts'
-import AccessibilityModule from 'highcharts/modules/accessibility'
+import * as Highcharts from 'highcharts'
+import 'highcharts/modules/accessibility'
 import enUs from 'antd/lib/locale/en_US'
 import { Download, Trends } from './Graph'
 import AdoptiumLogo from './Adoptiumlogo.svg'
 import NavigationMenu from './Components/NavigationMenu'
 import ErrorBoundary from './ErrorBoundary'
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
-
-AccessibilityModule(Highcharts)
 Highcharts.AST.allowedAttributes.push('rel')
 
 const { Header, Content, Sider } = Layout
