@@ -1,7 +1,6 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router';
 import { Menu } from 'antd';
-import { Link } from 'react-router-dom';
 import { CloudDownloadOutlined, LineChartOutlined } from '@ant-design/icons';
 
 const NavigationMenu = (): JSX.Element => {
