@@ -2,7 +2,7 @@ import React from 'react';
 import { act, render } from '@testing-library/react';
 import { vi, describe, expect, test } from 'vitest'
 import NavigationMenu from '../index';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 describe('NavigationMenu component', () => {
     test('renders correctly /download path', async() => {

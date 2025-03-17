@@ -8,7 +8,7 @@ Highcharts.useSerialIds(true);
 Highcharts.AST.allowedAttributes.push('rel');
 
 // mock router for 'useParams'
-vi.mock('react-router-dom');
+vi.mock('react-router');
 
 vi.mock('antd', async () => {
   const antd = await vi.importActual('antd');
