@@ -22,7 +22,7 @@
         "typescript": "^5.8.2"
     },
     "dependencies": {
-        "@ant-design/icons": "^5.6.1",
+        "@ant-design/icons": "^6.0.0",
         "@babel/preset-env": "^7.26.9",
         "@testing-library/jest-dom": "^6.6.3",
         "@testing-library/react": "^16.2.0",
