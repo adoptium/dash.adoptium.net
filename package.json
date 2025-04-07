@@ -37,7 +37,7 @@
         "react-dom": "^19.1.0",
         "react-router": "^7.5.0",
         "static-server": "^2.2.1",
-        "vitest": "^2.0.2"
+        "vitest": "^3.1.1"
     },
     "ts-standard": {
         "ignore": [
