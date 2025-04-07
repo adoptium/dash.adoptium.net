@@ -10,6 +10,7 @@ exports[`NavigationMenu component > renders correctly /download path 1`] = `
     tabindex="0"
   >
     <li
+      aria-describedby="test-id"
       class="ant-menu-item"
       data-menu-id="rc-menu-uuid-test-1"
       role="menuitem"
@@ -43,6 +44,7 @@ exports[`NavigationMenu component > renders correctly /download path 1`] = `
       />
     </li>
     <li
+      aria-describedby="test-id"
       class="ant-menu-item"
       data-menu-id="rc-menu-uuid-test-2"
       role="menuitem"
@@ -90,6 +92,7 @@ exports[`NavigationMenu component > renders correctly /trends path 1`] = `
     tabindex="0"
   >
     <li
+      aria-describedby="test-id"
       class="ant-menu-item"
       data-menu-id="rc-menu-uuid-test-1"
       role="menuitem"
@@ -123,6 +126,7 @@ exports[`NavigationMenu component > renders correctly /trends path 1`] = `
       />
     </li>
     <li
+      aria-describedby="test-id"
       class="ant-menu-item"
       data-menu-id="rc-menu-uuid-test-2"
       role="menuitem"
