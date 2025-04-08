@@ -1,4 +1,5 @@
 {
+    "type": "module",
     "name": "adoptium-dashboard-website",
     "version": "1.0.0",
     "license": "Apache License Version 2.0",
