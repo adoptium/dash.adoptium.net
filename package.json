@@ -32,7 +32,7 @@
         "@vitejs/plugin-react": "^4.3.4",
         "antd": "^5.24.6",
         "express": "^5.1.0",
-        "highcharts": "^12.1.2",
+        "highcharts": "^12.2.0",
         "highcharts-react-official": "^3.2.1",
         "lodash": "^4.17.21",
         "moment": "^2.30.1",
