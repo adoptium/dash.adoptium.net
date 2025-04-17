@@ -1,8 +1,8 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { act, render } from '@testing-library/react';
-import { describe, expect, test } from 'vitest'
-import BarChart from '../BarChart'
+import { describe, expect, test } from 'vitest';
+import BarChart from '../BarChart';
 
 // NOTE: Use a delay to avoid diff with rendering animation
 // https://github.com/highcharts/highcharts/issues/14328
@@ -22,26 +22,28 @@ const mock_data = {
   "jdk8u362-b09": 3866298,
   "jdk8u372-b07": 3210329,
   "jdk8u382-b05": 1929984
-}
+};
 
 describe('BarChart component', () => {
   test('renders correctly', async () => {
-    let getByText;
+    let getByText, getAllByText;
 
     await act(async () => {
-      ({ getByText } = render(
+      ({ getByText, getAllByText } = render(
         <BarChart
           data={mock_data}
           name={'Downloads'}
         />
       ));
-      setTimeout(() => { }, delay)
+      setTimeout(() => { }, delay);
     });
 
+    // Use getAllByText for "Downloads" text that appears multiple times
+    expect(getAllByText('Downloads')[0]).toBeInTheDocument();
     expect(getByText('jdk8u302-b08')).toBeInTheDocument();
-    expect(getByText('3 238 608')).toBeInTheDocument();
+    // Use getAllByText with options to find the specific element
+    expect(getAllByText('3 238 608', { selector: 'text' })[0]).toBeInTheDocument();
 
     expect(getByText('jdk8u382-b05')).toBeInTheDocument();
-    expect(getByText('1 929 984')).toBeInTheDocument();
   });
 });

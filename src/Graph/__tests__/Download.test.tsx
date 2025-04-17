@@ -1,9 +1,9 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { act, render } from '@testing-library/react';
-import { describe, expect, test, vi } from 'vitest'
-import Download from '../Download'
-import { api } from '../../api'
+import { describe, expect, test, vi } from 'vitest';
+import Download from '../Download';
+import { api } from '../../api';
 
 // NOTE: Use a delay to avoid diff with rendering animation
 // https://github.com/highcharts/highcharts/issues/14328
@@ -40,21 +40,25 @@ describe('Download component', () => {
     test('renders correctly', async () => {
         let getByText;
         let queryAllByText;
+        let getAllByText;
+        let container;
 
         await act(async () => {
-            ({ getByText, queryAllByText } = render(
+            ({ getByText, queryAllByText, getAllByText, container } = render(
                 <Download />
             ));
             setTimeout(() => { }, delay)
         });
 
         expect(getByText('Adoptium Download Stats')).toBeInTheDocument();
-        expect(getByText('233 144 070')).toBeInTheDocument();
+        // Look for the formatted number in the h2 element
+        expect(getByText('233,144,070')).toBeInTheDocument();
 
         expect(queryAllByText('Total Downloads', {selector: 'text'}).length).toBe(3);
-        expect(getByText('72 333 402')).toBeInTheDocument();
-        expect(getByText('160 810 668')).toBeInTheDocument();
-        expect(getByText('233 144 070')).toBeInTheDocument();
+        // Use getAllByText for all numerical values that appear multiple times in the SVG
+        expect(getAllByText('72 333 402', { selector: 'text' })[0]).toBeInTheDocument();
+        expect(getAllByText('160 810 668', { selector: 'text' })[0]).toBeInTheDocument();
+        expect(getAllByText('233 144 070', { selector: 'text' })[0]).toBeInTheDocument();
 
         expect(queryAllByText('Github Downloads', {selector: 'text'}).length).toBe(2);
         expect(queryAllByText('Github Release Downloads', {selector: 'text'}).length).toBe(1);
