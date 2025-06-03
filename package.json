@@ -17,7 +17,7 @@
         "@types/highcharts": "^7.0.0",
         "@types/lodash": "^4.17.17",
         "@types/react": "^19.1.6",
-        "@vitest/coverage-v8": "^3.1.4",
+        "@vitest/coverage-v8": "^3.2.0",
         "jsdom": "^26.1.0",
         "parcel": "^2.15.2",
         "process": "^0.11.10",
